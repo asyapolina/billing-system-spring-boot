@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BillingSystem.iml" filepath="$PROJECT_DIR$/BillingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CDR-service/CDR-service.iml" filepath="$PROJECT_DIR$/CDR-service/CDR-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JPA-entities/JPA-entities.iml" filepath="$PROJECT_DIR$/JPA-entities/JPA-entities.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CDR-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CDR-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CallTimeGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CdrGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/PhoneNumberGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/ClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/ClientDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/enums/TariffType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ClientEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/TariffEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2ONonPgsGWOHLYt7Yr1IbW1MX7n" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/annemariarepenko/IdeaProjects/BillingSystem",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "897ab2c94e5b5f6b33498dcaefef1d80",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.JpaEntitesApplication (2)">
+    <configuration name="CdrServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="CDR-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.cdr.CdrServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nexign.cdr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CdrServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="CDR-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exampleru.nexign.cdr.CdrServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JpaEntitesApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="JPA-entities" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.jpaentites.JpaEntitesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JpaEntitesApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="JPA-entities" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.jpa.JpaEntitesApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nexign.jpa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JpaEntitesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="JPA-entites" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.jpaentites.JpaEntitesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.JpaEntitesApplication (2)" />
+        <item itemvalue="Spring Boot.CdrServiceApplication (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="" />
+      <created>1681410566138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681410566138</updated>
+      <workItem from="1681410567225" duration="1011000" />
+      <workItem from="1681454021229" duration="24000" />
+      <workItem from="1681454059567" duration="2366000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
