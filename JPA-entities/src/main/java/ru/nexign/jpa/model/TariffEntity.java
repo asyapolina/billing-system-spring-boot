@@ -19,24 +19,24 @@ import java.util.List;
 public class TariffEntity {
     @Id
     @Column(name= "id")
-    private Long id;
+    private String id;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "fix_price")
+    @Column(name = "fix_price", scale = 2)
     private BigDecimal fixPrice;
 
     @Column(name = "free_minute_limit")
     private Integer freeMinuteLimit;
 
-    @Column(name = "first_minute_price")
+    @Column(name = "first_minute_price", scale = 2)
     private BigDecimal firstMinutePrice;
 
     @Column(name = "first_minute_limit")
     private Integer firstMinuteLimit;
 
-    @Column(name = "next_minute_price")
+    @Column(name = "next_minute_price", scale = 2)
     private BigDecimal nextMinutePrice;
 
     @Column(name = "is_incoming_free", nullable = false)

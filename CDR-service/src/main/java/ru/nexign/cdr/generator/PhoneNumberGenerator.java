@@ -1,10 +1,13 @@
 package ru.nexign.cdr.generator;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class PhoneNumberGenerator {
     public static String generateRussianPhoneNumber() {
-        String formatPattern = "7xxxxxxxxxx"; // Шаблон формата номера телефона
+        String formatPattern = "79xxxxxxxxx"; // Шаблон формата номера телефона
 
         StringBuilder phoneNumber = new StringBuilder();
         Random random = new Random();
