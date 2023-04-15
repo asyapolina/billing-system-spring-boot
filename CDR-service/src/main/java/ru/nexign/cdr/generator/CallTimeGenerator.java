@@ -1,5 +1,7 @@
 package ru.nexign.cdr.generator;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,6 +9,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+@Component
 public class CallTimeGenerator {
     public static String generateCallTime(int month, int year) {
         LocalDate currentDate = LocalDate.now();
