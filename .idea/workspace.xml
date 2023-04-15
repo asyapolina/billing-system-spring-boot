@@ -4,70 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: cdr parser and service">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_14_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_javafaker_javafaker_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_7_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_7_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_7_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_7_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_android_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/CallRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/TariffRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/generator/CdrPlusGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/CallService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/RequestSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/ClientsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/TariffsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/CallDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/ClientDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/messaging/CdrMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/MessageList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/DepositRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TariffRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/DepositResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TariffResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/service/ClientsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/808ab9f0-6060-4f34-9606-550c2ac5de4d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/808ab9f0-6060-4f34-9606-550c2ac5de4d/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/808ab9f0-6060-4f34-9606-550c2ac5de4d/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/808ab9f0-6060-4f34-9606-550c2ac5de4d/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/808ab9f0-6060-4f34-9606-550c2ac5de4d/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="add: property files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/CdrServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/CdrServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CallTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CallTimeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CdrGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/CdrGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/PhoneNumberGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/PhoneNumberGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/ClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/JpaEntitesApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/JpaEntitesApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/enums/TariffType.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/enums/CallType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ClientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/TariffEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/TariffEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/RequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/RequestSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/CallDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/CallDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/ClientDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +85,7 @@
       <recent name="ru.nexign.brt.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.JpaEntitesApplication (2)">
+  <component name="RunManager" selected="Spring Boot.CrmServiceApplication">
     <configuration name="BrtServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="BRT-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.brt.BrtServiceApplication" />
@@ -223,7 +168,7 @@
       <workItem from="1681410567225" duration="1011000" />
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
-      <workItem from="1681457079877" duration="49184000" />
+      <workItem from="1681457079877" duration="51578000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -232,7 +177,70 @@
       <option name="project" value="LOCAL" />
       <updated>1681456639516</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: call entity">
+      <created>1681585958521</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681585958521</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: cdr data sending">
+      <created>1681586079161</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586079161</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: client generator">
+      <created>1681586145343</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586145343</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add: dependencies">
+      <created>1681586227505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586227505</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add: entity dto">
+      <created>1681586255935</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586255935</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add: requests and responses">
+      <created>1681586308827</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586308827</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: abonent rest controller">
+      <created>1681586347192</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586347192</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: config fixes">
+      <created>1681586404628</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586404628</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add: property files">
+      <created>1681586453036</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681586453036</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +260,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="feat: cdr parser and service" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: cdr parser and service" />
+    <MESSAGE value="feat: call entity" />
+    <MESSAGE value="feat: cdr data sending" />
+    <MESSAGE value="feat: client generator" />
+    <MESSAGE value="add: dependencies" />
+    <MESSAGE value="add: entity dto" />
+    <MESSAGE value="add: requests and responses" />
+    <MESSAGE value="feat: abonent rest controller" />
+    <MESSAGE value="fix: config fixes" />
+    <MESSAGE value="add: property files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: property files" />
   </component>
 </project>

@@ -3,11 +3,9 @@ package ru.nexign.crm.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.nexign.crm.messaging.RequestSender;
+import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.TariffRequest;
 
 @RestController
@@ -25,6 +23,16 @@ public class ManagerController {
     public ResponseEntity<?> changeTariff(@RequestBody TariffRequest request) {
         try {
             log.info("patch /changeTariff");
+            return ResponseEntity.ok(sender.send(request));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping(path = "/abonent")
+    public ResponseEntity<?> changeTariff(@RequestBody ClientDto request) {
+        try {
+            log.info("post /abonent");
             return ResponseEntity.ok(sender.send(request));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

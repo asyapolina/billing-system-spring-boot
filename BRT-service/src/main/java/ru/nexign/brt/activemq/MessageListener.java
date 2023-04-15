@@ -6,17 +6,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.service.ClientService;
+import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.DepositRequest;
 import ru.nexign.jpa.request.TariffRequest;
-import ru.nexign.jpa.response.DepositResponse;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
 
 @Service
 @Slf4j
@@ -56,6 +51,20 @@ public class MessageListener {
 
         try {
             var response = service.changeTariff(mapper.readValue(request, TariffRequest.class));
+            return mapper.writeValueAsString(response);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @JmsListener(destination = "client-mq")
+    public String receiveClientDto(@Payload String request) {
+        log.info("Request received: {}", request);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+
+        try {
+            var response = service.createClient(mapper.readValue(request, ClientDto.class));
             return mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

@@ -2,7 +2,7 @@ package ru.nexign.jpa.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import ru.nexign.jpa.enums.CallType;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Getter
-@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class CallDto implements Serializable {
     private CallType callType;
