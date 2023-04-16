@@ -4,17 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.nexign.crm.messaging.RequestSender;
+import ru.nexign.crm.messaging.MessageProducer;
 import ru.nexign.jpa.request.DepositRequest;
 
 @RestController
 @RequestMapping(path = "/abonent")
 @Slf4j
 public class AbonentController {
-    private final RequestSender sender;
+    private final MessageProducer sender;
 
     @Autowired
-    public AbonentController(RequestSender sender) {
+    public AbonentController(MessageProducer sender) {
         this.sender = sender;
     }
 

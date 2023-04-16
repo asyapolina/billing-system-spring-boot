@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CDR-service" />
         <module name="JPA-entities" />
+        <module name="HRS-service" />
         <module name="CRM-service" />
         <module name="BRT-service" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="BRT-service" target="17" />
       <module name="CDR-service" target="17" />
       <module name="CRM-service" target="17" />
+      <module name="HRS-service" target="17" />
       <module name="JPA-entities" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -26,6 +28,7 @@
       <module name="BRT-service" options="-parameters" />
       <module name="CDR-service" options="-parameters" />
       <module name="CRM-service" options="-parameters" />
+      <module name="HRS-service" options="-parameters" />
       <module name="JPA-entities" options="-parameters" />
     </option>
   </component>

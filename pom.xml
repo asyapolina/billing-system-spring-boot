@@ -18,6 +18,9 @@
     <modules>
         <module>JPA-entities</module>
         <module>CDR-service</module>
+        <module>HRS-service</module>
+        <module>BRT-service</module>
+        <module>CRM-service</module>
     </modules>
 
 </project>

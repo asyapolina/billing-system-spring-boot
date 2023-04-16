@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.dao.ClientRepository;
 import ru.nexign.brt.dao.TariffRepository;
+import ru.nexign.brt.exception.BrtException;
+import ru.nexign.brt.exception.ClientNotFoundException;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.dto.Mapper;
 import ru.nexign.jpa.request.DepositRequest;
@@ -15,6 +17,7 @@ import java.math.BigDecimal;
 
 @Service
 public class ClientService {
+    private final int PHONE_NUMBER_LENGTH = 11;
     private final ClientRepository clientRepository;
     private final TariffRepository tariffRepository;
     private final Mapper mapper;
@@ -37,9 +40,12 @@ public class ClientService {
     }
 
     public ClientDto getByPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.length() != PHONE_NUMBER_LENGTH) {
+            throw new BrtException("Incorrect phone number.");
+        }
         var client = clientRepository.findByPhoneNumber(phoneNumber);
         if (client == null) {
-            // exception
+            throw new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist.");
         }
         return mapper.toDto(client);
     }
