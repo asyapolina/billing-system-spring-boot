@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.nexign.crm.messaging.RequestSender;
+import ru.nexign.crm.messaging.MessageProducer;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.TariffRequest;
 
@@ -12,10 +12,10 @@ import ru.nexign.jpa.request.TariffRequest;
 @RequestMapping(path = "/manager")
 @Slf4j
 public class ManagerController {
-    private final RequestSender sender;
+    private final MessageProducer sender;
 
     @Autowired
-    public ManagerController(RequestSender sender) {
+    public ManagerController(MessageProducer sender) {
         this.sender = sender;
     }
 
@@ -30,7 +30,7 @@ public class ManagerController {
     }
 
     @PostMapping(path = "/abonent")
-    public ResponseEntity<?> changeTariff(@RequestBody ClientDto request) {
+    public ResponseEntity<?> createClient(@RequestBody ClientDto request) {
         try {
             log.info("post /abonent");
             return ResponseEntity.ok(sender.send(request));

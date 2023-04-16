@@ -17,6 +17,6 @@ public class CallDto implements Serializable {
     private CallType callType;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private LocalTime duration;
+    private String duration;
     private BigDecimal cost;
 }

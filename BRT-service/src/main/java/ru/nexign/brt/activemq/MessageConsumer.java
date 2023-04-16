@@ -15,19 +15,19 @@ import ru.nexign.jpa.request.TariffRequest;
 
 @Service
 @Slf4j
-public class MessageListener {
+public class MessageConsumer {
     private final ClientService service;
 
     @Autowired
-    public MessageListener(ClientService service) {
+    public MessageConsumer(ClientService service) {
         this.service = service;
     }
 
-    @JmsListener(destination = "cdr-mq")
-    public void receiveCdr(@Payload String cdr) {
-        log.info("Cdr received: {}", cdr);
-
-    }
+//    @JmsListener(destination = "cdr-mq")
+//    public void receiveCdr(@Payload String cdr) {
+//        log.info("Cdr received: {}", cdr);
+//
+//    }
 
     @JmsListener(destination = "deposit-mq")
     public String receiveDepositRequest(@Payload String request) {

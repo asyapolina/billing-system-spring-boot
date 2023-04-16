@@ -21,17 +21,17 @@ import javax.jms.Message;
 
 @Component
 @Slf4j
-public class RequestSender {
+public class MessageProducer {
     private final JmsTemplate jmsTemplate;
     private final String depositMq;
     private final String tariffMq;
     private final String clientMq;
 
     @Autowired
-    public RequestSender(JmsTemplate jmsTemplate,
-                         @Value("${deposit.mq}") String depositMq,
-                         @Value("${tariff.mq}") String tariffMq,
-                         @Value("${client.mq}") String clientMq) {
+    public MessageProducer(JmsTemplate jmsTemplate,
+                           @Value("${deposit.mq}") String depositMq,
+                           @Value("${tariff.mq}") String tariffMq,
+                           @Value("${client.mq}") String clientMq) {
         this.jmsTemplate = jmsTemplate;
         this.depositMq = depositMq;
         this.tariffMq = tariffMq;

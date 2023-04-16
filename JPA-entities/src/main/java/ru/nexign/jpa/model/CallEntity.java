@@ -33,8 +33,8 @@ public class CallEntity {
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
-    @Column(name = "duration", nullable = true)
-    private LocalTime duration;
+    @Column(name = "duration", nullable = false)
+    private String duration;
 
     @Column(name = "cost", nullable = false, scale = 2)
     private BigDecimal cost;
