@@ -19,5 +19,5 @@ public class CallDataRecord implements Serializable {
     private CallType callType;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String tariffIndex;
+    private TariffEntity tariff;
 }

@@ -16,5 +16,4 @@ import java.util.List;
 public class TarifficationRequest {
 
     private List<CallDataRecord> cdrList;
-    private List<TariffEntity> tariffs;
 }

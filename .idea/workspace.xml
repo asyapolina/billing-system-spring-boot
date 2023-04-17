@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="add: HRS config">
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/MinuteTariffService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/RegularTariffService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/UnlimitedTariffService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ReportResponse.java" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: tariffication logic services">
+      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/TarifficationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TarifficationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ClientReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TarifficationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TarifficationRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +174,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="5958000" />
+      <workItem from="1681717957873" duration="7323000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -275,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681668932837</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat: tariffication logic services">
+      <created>1681724136448</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1681724136448</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +315,8 @@
     <MESSAGE value="refactor: class naming" />
     <MESSAGE value="feat: HRS module with tariffication" />
     <MESSAGE value="add: HRS config" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: HRS config" />
+    <MESSAGE value="feat: tariffication logic services" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: tariffication logic services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

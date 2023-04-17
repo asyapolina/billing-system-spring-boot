@@ -1,6 +1,7 @@
-package ru.nexign.hrs.service;
+package ru.nexign.hrs.service.tariffication;
 
 import org.springframework.stereotype.Service;
+import ru.nexign.hrs.service.tariffication.TarifficationService;
 import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.TariffEntity;
 

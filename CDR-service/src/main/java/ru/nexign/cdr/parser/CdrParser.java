@@ -1,6 +1,7 @@
 package ru.nexign.cdr.parser;
 
 import org.springframework.stereotype.Component;
+import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.CallDataRecord;
 
 import java.io.*;
@@ -19,7 +20,7 @@ public class CdrParser {
 
         InputStream inputStream = null;
         try {
-            inputStream = new FileInputStream("cdr/cdr.txt");
+            inputStream = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +34,13 @@ public class CdrParser {
             LocalDateTime startTime = LocalDateTime.parse(fields[2].trim(), formatter);
             LocalDateTime endTime = LocalDateTime.parse(fields[3].trim(), formatter);
 
-            cdrList.add(new CallDataRecord(phoneNumber, callType, startTime, endTime, null));
+            CallType callTypeEnum = null;
+            if (callType.equals(CallType.INCOMING.name())) {
+                callTypeEnum = CallType.INCOMING;
+            } else if (callType.equals(CallType.OUTGOING.name())) {
+                callTypeEnum = CallType.OUTGOING;
+            }
+            cdrList.add(new CallDataRecord(phoneNumber, callTypeEnum, startTime, endTime, null));
         }
         reader.close();
 
