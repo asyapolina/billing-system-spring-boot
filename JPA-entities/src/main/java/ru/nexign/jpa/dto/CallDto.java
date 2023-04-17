@@ -8,7 +8,6 @@ import ru.nexign.jpa.enums.CallType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Getter
 @NoArgsConstructor

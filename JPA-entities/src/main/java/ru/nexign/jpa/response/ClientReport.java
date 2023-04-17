@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.nexign.jpa.dto.CallDto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ClientReport {
+public class ClientReport implements Serializable {
     private String phoneNumber;
     private BigDecimal price;
     private List<CallDto> calls;

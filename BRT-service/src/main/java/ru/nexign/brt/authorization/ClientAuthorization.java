@@ -3,19 +3,24 @@ package ru.nexign.brt.authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.nexign.brt.service.ClientService;
+import ru.nexign.brt.service.TariffService;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.model.CallDataRecord;
+import ru.nexign.jpa.model.TariffEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ClientAuthorization {
-    private final ClientService service;
+    private final ClientService clientService;
+    private final TariffService tariffService;
 
     @Autowired
-    public ClientAuthorization(ClientService service) {
-        this.service = service;
+    public ClientAuthorization(ClientService clientService, TariffService tariffService) {
+
+        this.clientService = clientService;
+        this.tariffService = tariffService;
     }
 
     public List<CallDataRecord> authorizeClientsFromCdr(List<CallDataRecord> cdrList) {
@@ -23,9 +28,10 @@ public class ClientAuthorization {
 
         for (CallDataRecord cdr : cdrList) {
             if (cdr.getPhoneNumber() != null) {
-                ClientDto client = service.getByPhoneNumber(cdr.getPhoneNumber());
-                if (client.getBalance().doubleValue() > 0.0) {
-                    cdr.setTariffIndex(client.getTariffId());
+                ClientDto client = clientService.getByPhoneNumber(cdr.getPhoneNumber());
+                TariffEntity tariff = tariffService.getTariff(client.getTariffId());
+                if (client.getBalance().doubleValue() > 0.0 && tariff != null) {
+                    cdr.setTariff(tariff);
                 }
             }
 

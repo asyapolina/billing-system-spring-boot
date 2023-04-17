@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.DepositRequest;
 import ru.nexign.jpa.request.TariffRequest;
+import ru.nexign.jpa.request.TarifficationStartRequest;
 import ru.nexign.jpa.response.DepositResponse;
 import ru.nexign.jpa.response.TariffResponse;
 
@@ -26,16 +27,19 @@ public class MessageProducer {
     private final String depositMq;
     private final String tariffMq;
     private final String clientMq;
+    private final String tarifficationMq;
 
     @Autowired
     public MessageProducer(JmsTemplate jmsTemplate,
                            @Value("${deposit.mq}") String depositMq,
                            @Value("${tariff.mq}") String tariffMq,
-                           @Value("${client.mq}") String clientMq) {
+                           @Value("${client.mq}") String clientMq,
+                           @Value("${tariffication.mq}") String tarifficationMq) {
         this.jmsTemplate = jmsTemplate;
         this.depositMq = depositMq;
         this.tariffMq = tariffMq;
         this.clientMq = clientMq;
+        this.tarifficationMq = tarifficationMq;
     }
 
     @SneakyThrows
@@ -85,5 +89,12 @@ public class MessageProducer {
             }
         };
         return sendAndReceive(messageCreator, ClientDto.class, clientMq);
+    }
+
+    @SneakyThrows
+    public void send(TarifficationStartRequest request) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        jmsTemplate.convertAndSend(tarifficationMq, mapper.writeValueAsString(request));
     }
 }

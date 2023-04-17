@@ -18,7 +18,7 @@ public class CdrServiceApplication {
 
         final CdrService cdr = context.getBean(CdrService.class);
         //cdr.generateCdrFile(1, 2001);
-        cdr.sendCdrData("cdr/cdr.txt", 4, 2001);
+        //cdr.sendCdrData("cdr/cdr.txt", 4, 2001);
     }
 
 }

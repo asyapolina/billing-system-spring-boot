@@ -15,12 +15,29 @@ public class CallService {
         this.mapper = mapper;
     }
 
-    public CallDto getLastCall() {
-        var call = callRepository.findCallEntityWithMaxEndCallTime();
-        if (call == null) {
-            // exception
-        }
+    public int getLastCallMonth() {
+        CallDto call = getLastCall();
 
+        if (call == null) {
+            return 0;
+        }
+        return call.getEndTime().getMonth().getValue();
+    }
+
+    public int getLastCallYear() {
+        CallDto call = getLastCall();
+
+        if (call == null) {
+            return 0;
+        }
+        return call.getEndTime().getYear();
+    }
+
+    private CallDto getLastCall() {
+        var call = callRepository.findCallEntityWithMaxEndCallTime();
+        if (call == null) return null;
         return mapper.toDto(call);
     }
+
+
 }

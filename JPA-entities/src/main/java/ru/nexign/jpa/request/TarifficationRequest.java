@@ -1,19 +1,18 @@
 package ru.nexign.jpa.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.model.TariffEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
-public class TarifficationRequest {
-
+public class TarifficationRequest implements Serializable {
+    @JsonProperty("cdrList")
     private List<CallDataRecord> cdrList;
 }

@@ -10,9 +10,12 @@ import org.springframework.stereotype.Component;
 import ru.nexign.cdr.service.CdrService;
 import ru.nexign.jpa.request.CdrRequest;
 
+import java.io.IOException;
+
 @Component
 @Slf4j
 public class MessageConsumer {
+    public static final String FILE_PATH = "cdr/cdr.txt";
     private final CdrService service;
 
     @Autowired
@@ -27,8 +30,8 @@ public class MessageConsumer {
         ObjectMapper mapper = new ObjectMapper();
         try {
             var cdrRequest = mapper.readValue(request, CdrRequest.class);
-            service.generateCdrFile(cdrRequest.getMonth(), cdrRequest.getYear());
-        } catch (JsonProcessingException e) {
+            service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

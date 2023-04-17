@@ -1,7 +1,5 @@
 package ru.nexign.cdr.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +7,8 @@ import ru.nexign.cdr.generator.CdrGenerator;
 import ru.nexign.cdr.messaging.MessageProducer;
 import ru.nexign.cdr.parser.CdrParser;
 import ru.nexign.jpa.model.CallDataRecord;
+import ru.nexign.jpa.request.TarifficationRequest;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 
@@ -47,6 +45,6 @@ public class CdrService {
             throw new IOException("Ошибка при чтении файла: " + e.getMessage());
         }
 
-        producer.send(cdrList);
+        producer.send(new TarifficationRequest(cdrList));
     }
 }

@@ -1,17 +1,13 @@
 package ru.nexign.jpa.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
+import lombok.*;
 import ru.nexign.jpa.enums.CallType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class CallDataRecord implements Serializable {

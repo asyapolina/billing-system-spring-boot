@@ -13,30 +13,26 @@ import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.DepositRequest;
 import ru.nexign.jpa.request.TariffRequest;
 
+import java.time.LocalDateTime;
+
 @Service
 @Slf4j
 public class MessageConsumer {
-    private final ClientService service;
+    private final ClientService clientService;
 
     @Autowired
-    public MessageConsumer(ClientService service) {
-        this.service = service;
-    }
+    public MessageConsumer(ClientService clientService) {
 
-//    @JmsListener(destination = "cdr-mq")
-//    public void receiveCdr(@Payload String cdr) {
-//        log.info("Cdr received: {}", cdr);
-//
-//    }
+        this.clientService = clientService;
+    }
 
     @JmsListener(destination = "${deposit.mq}")
     public String receiveDepositRequest(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
 
         try {
-            var response = service.depositMoney(mapper.readValue(request, DepositRequest.class));
+            var response = clientService.depositMoney(mapper.readValue(request, DepositRequest.class));
             return mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -47,24 +43,23 @@ public class MessageConsumer {
     public String receiveTariffRequest(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
 
         try {
-            var response = service.changeTariff(mapper.readValue(request, TariffRequest.class));
+            var response = clientService.changeTariff(mapper.readValue(request, TariffRequest.class));
             return mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @JmsListener(destination = "${client-mq}")
+    @JmsListener(destination = "${client.mq}")
     public String receiveClientDto(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
         try {
-            var response = service.createClient(mapper.readValue(request, ClientDto.class));
+            var response = clientService.createClient(mapper.readValue(request, ClientDto.class));
             return mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nexign.crm.messaging.MessageProducer;
 import ru.nexign.jpa.dto.ClientDto;
+import ru.nexign.jpa.enums.Action;
 import ru.nexign.jpa.request.TariffRequest;
+import ru.nexign.jpa.request.TarifficationStartRequest;
 
 @RestController
 @RequestMapping(path = "/manager")
@@ -37,5 +39,15 @@ public class ManagerController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PatchMapping(path = "/billing")
+    public void startTariffication(@RequestBody String request) {
+//        try {
+            log.info("patch /billing");
+            sender.send(new TarifficationStartRequest(request));
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
     }
 }
