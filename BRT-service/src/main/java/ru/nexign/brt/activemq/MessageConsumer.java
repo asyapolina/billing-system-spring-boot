@@ -29,7 +29,7 @@ public class MessageConsumer {
 //
 //    }
 
-    @JmsListener(destination = "deposit-mq")
+    @JmsListener(destination = "${deposit.mq}")
     public String receiveDepositRequest(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
@@ -43,7 +43,7 @@ public class MessageConsumer {
         }
     }
 
-    @JmsListener(destination = "tariff-mq")
+    @JmsListener(destination = "${tariff.mq}")
     public String receiveTariffRequest(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
@@ -57,7 +57,7 @@ public class MessageConsumer {
         }
     }
 
-    @JmsListener(destination = "client-mq")
+    @JmsListener(destination = "${client-mq}")
     public String receiveClientDto(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();

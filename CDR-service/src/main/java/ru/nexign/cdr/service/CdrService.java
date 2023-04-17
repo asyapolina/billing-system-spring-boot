@@ -4,15 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import ru.nexign.cdr.generator.CdrGenerator;
+import ru.nexign.cdr.messaging.MessageProducer;
 import ru.nexign.cdr.parser.CdrParser;
 import ru.nexign.jpa.model.CallDataRecord;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,17 +19,13 @@ import java.util.List;
 public class CdrService {
     private final CdrGenerator generator;
     private final CdrParser parser;
-    private final JmsTemplate jmsTemplate;
-    private final String cdrMq;
+    private final MessageProducer producer;
 
     @Autowired
-    public CdrService(CdrGenerator generator, CdrParser parser,
-                      JmsTemplate jmsTemplate,
-                      @Value("${cdr.mq}") String cdrMq) {
+    public CdrService(CdrGenerator generator, CdrParser parser, MessageProducer producer) {
         this.generator = generator;
         this.parser = parser;
-        this.jmsTemplate = jmsTemplate;
-        this.cdrMq = cdrMq;
+        this.producer = producer;
     }
 
     public void generateCdrFile(int month, int year) {
@@ -52,8 +47,6 @@ public class CdrService {
             throw new IOException("Ошибка при чтении файла: " + e.getMessage());
         }
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        jmsTemplate.convertAndSend(cdrMq, mapper.writeValueAsString(cdrList));
+        producer.send(cdrList);
     }
 }

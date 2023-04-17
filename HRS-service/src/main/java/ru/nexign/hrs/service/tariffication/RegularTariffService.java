@@ -13,7 +13,7 @@ import java.time.Duration;
 public class RegularTariffService implements TarifficationService {
     @Override
     public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, CallType callType) {
-        long durationInMinutes = (long) Math.ceil((callDuration.getSeconds() + 0.9) / 60.0);
+        long durationInMinutes = (long) Math.ceil(callDuration.getSeconds() / 60.0);
         long totalTime = totalSpentMinutes + durationInMinutes;
 
         if (callType.equals(CallType.INCOMING)) {

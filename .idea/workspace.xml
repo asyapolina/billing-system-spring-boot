@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: report generator">
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="fix: cost calculation">
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/CdrRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/HrsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/HrsServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/RegularTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/RegularTariffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/UnlimitedTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/UnlimitedTariffService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +179,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="9012000" />
+      <workItem from="1681717957873" duration="12011000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -289,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681725816828</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fix: cost calculation">
+      <created>1681727492852</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1681727492852</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +336,8 @@
     <MESSAGE value="add: HRS config" />
     <MESSAGE value="feat: tariffication logic services" />
     <MESSAGE value="feat: report generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: report generator" />
+    <MESSAGE value="fix: cost calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: cost calculation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
