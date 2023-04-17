@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TarifficationResponse {
+public class ClientReport {
     private String phoneNumber;
     private BigDecimal price;
     private List<CallDto> calls;

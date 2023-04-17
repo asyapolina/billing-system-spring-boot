@@ -4,34 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: create new abonent functionality">
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/BrtException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/ClientNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/advice/ManagerControllerAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/TarifficationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TarifficationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TarifficationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="add: HRS config">
+      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/MinuteTariffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/RegularTariffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/UnlimitedTariffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ReportResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/generator/CdrPlusGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/RequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/CallDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/CallDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/TarifficationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TarifficationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ClientReport.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +66,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
-    "spring.configuration.checksum": "0dfae8c7b97b98c25a8a647aef5d1f10",
+    "spring.configuration.checksum": "672fad7d048bd4ebe24041c91bd4a8c9",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -194,7 +174,8 @@
       <workItem from="1681410567225" duration="1011000" />
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
-      <workItem from="1681457079877" duration="63832000" />
+      <workItem from="1681457079877" duration="64559000" />
+      <workItem from="1681717957873" duration="5958000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -273,7 +254,28 @@
       <option name="project" value="LOCAL" />
       <updated>1681588109557</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactor: class naming">
+      <created>1681668867729</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1681668867729</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: HRS module with tariffication">
+      <created>1681668911861</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681668911861</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add: HRS config">
+      <created>1681668932837</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1681668932837</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +305,11 @@
     <MESSAGE value="fix: config fixes" />
     <MESSAGE value="add: property files" />
     <MESSAGE value="feat: create new abonent functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: create new abonent functionality" />
+    <MESSAGE value="refactor: field types changing" />
+    <MESSAGE value="refactor: class naming" />
+    <MESSAGE value="feat: HRS module with tariffication" />
+    <MESSAGE value="add: HRS config" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: HRS config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
