@@ -5,17 +5,11 @@ import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.CallDataRecord;
 import ru.nexign.jpa.model.TariffEntity;
-import ru.nexign.jpa.request.TarifficationRequest;
 import ru.nexign.jpa.response.ClientReport;
-import ru.nexign.jpa.response.ReportResponse;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public interface TarifficationService {
@@ -26,8 +20,6 @@ public interface TarifficationService {
                                  CallType callType);
 
     default ClientReport tarifficate(CallDataRecord cdr, ClientReport report) {
-        var tariffIndex = cdr.getTariff().getId();
-
         Duration callDuration = Duration.between(cdr.getStartTime(), cdr.getEndTime());
         String duration = calculateCallDurationToString(callDuration);
 
@@ -37,10 +29,7 @@ public interface TarifficationService {
         }
 
         // Расчет стоимости звонка в зависимости от выбранного тарифа
-        BigDecimal callCost = BigDecimal.ZERO;
-        if (tariffIndex != null) {
-            callCost = calculateCallCost(cdr.getTariff(), callDuration, totalSpentMinutes, cdr.getCallType());
-        }
+        BigDecimal callCost = calculateCallCost(cdr.getTariff(), callDuration, totalSpentMinutes, cdr.getCallType());
 
         CallDto callDto = new CallDto(cdr.getCallType(), cdr.getStartTime(), cdr.getEndTime(), duration, callCost);
         report.getCalls().add(callDto);

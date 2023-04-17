@@ -1,7 +1,6 @@
 package ru.nexign.hrs.service.tariffication;
 
 import org.springframework.stereotype.Service;
-import ru.nexign.hrs.service.tariffication.TarifficationService;
 import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.TariffEntity;
 
@@ -25,8 +24,8 @@ public class UnlimitedTariffService implements TarifficationService {
         if (extraTime <= 0) {
             return new BigDecimal(0);
         } else {
-            if (extraTime >= totalSpentMinutes) {
-                return tariff.getNextMinutePrice().multiply(BigDecimal.valueOf(totalSpentMinutes));
+            if (extraTime >= durationInMinutes) {
+                return tariff.getNextMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes));
             } else {
                 return tariff.getNextMinutePrice().multiply(BigDecimal.valueOf(extraTime));
             }
