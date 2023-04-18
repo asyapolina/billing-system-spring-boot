@@ -2,8 +2,7 @@ package ru.nexign.hrs.service.tariffication;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.nexign.jpa.enums.CallType;
-import ru.nexign.jpa.model.TariffEntity;
+import ru.nexign.jpa.entity.TariffEntity;
 
 import java.math.BigDecimal;
 import java.time.Duration;

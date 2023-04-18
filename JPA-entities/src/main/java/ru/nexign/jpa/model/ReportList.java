@@ -1,4 +1,4 @@
-package ru.nexign.jpa.response;
+package ru.nexign.jpa.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReportResponse implements Serializable {
+public class ReportList implements Serializable {
     private List<ClientReport> clientReports;
 }

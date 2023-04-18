@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.nexign.cdr.generator.CdrGenerator;
 import ru.nexign.cdr.parser.CdrParser;
 import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.request.TarifficationRequest;
+import ru.nexign.jpa.model.CdrList;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,7 +31,7 @@ public class CdrService {
         }
     }
 
-    public TarifficationRequest sendCdrData(String filePath, int month, int year) throws IOException {
+    public CdrList sendCdrData(String filePath, int month, int year) throws IOException {
         generateCdrFile(month, year);
         List<CallDataRecord> cdrList;
 
@@ -42,6 +42,6 @@ public class CdrService {
             throw new IOException("Ошибка при чтении файла: " + e.getMessage());
         }
 
-        return new TarifficationRequest(cdrList);
+        return new CdrList(cdrList);
     }
 }

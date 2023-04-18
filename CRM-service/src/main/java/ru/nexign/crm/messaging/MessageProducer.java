@@ -8,30 +8,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 import ru.nexign.jpa.dto.ClientDto;
-import ru.nexign.jpa.request.DepositRequest;
-import ru.nexign.jpa.request.TariffRequest;
-import ru.nexign.jpa.request.TarifficationStartRequest;
-import ru.nexign.jpa.response.DepositResponse;
-import ru.nexign.jpa.response.TariffResponse;
-import ru.nexign.jpa.response.TarifficationResponse;
+import ru.nexign.jpa.request.body.DepositRequestBody;
+import ru.nexign.jpa.request.body.TariffRequestBody;
+import ru.nexign.jpa.request.body.TarifficationRequestBody;
+import ru.nexign.jpa.response.Response;
 
 import javax.jms.Message;
 
 @Component
 @Slf4j
 public class MessageProducer {
-    private final JmsTemplate jmsTemplate;
+    private final JmsMessagingTemplate jmsTemplate;
     private final String depositMq;
     private final String tariffMq;
     private final String clientMq;
     private final String tarifficationMq;
 
     @Autowired
-    public MessageProducer(JmsTemplate jmsTemplate,
+    public MessageProducer(JmsMessagingTemplate jmsTemplate,
                            @Value("${deposit.mq}") String depositMq,
                            @Value("${tariff.mq}") String tariffMq,
                            @Value("${client.mq}") String clientMq,
@@ -43,65 +42,32 @@ public class MessageProducer {
         this.tarifficationMq = tarifficationMq;
     }
 
+//    @SneakyThrows
+//    private <T> T sendAndReceive(MessageCreator messageCreator, Class<T> responseType, String destination) {
+//        Message message = jmsTemplate.sendAndReceive(destination, messageCreator);
+//        ObjectMapper mapper = new ObjectMapper();
+//        var json = ((ActiveMQTextMessage) message).getText();
+//        log.info("Response received: {}", json);
+//        return mapper.readValue(json, responseType);
+//    }
+
     @SneakyThrows
-    private <T> T sendAndReceive(MessageCreator messageCreator, Class<T> responseType, String destination) {
-        Message message = jmsTemplate.sendAndReceive(destination, messageCreator);
-        ObjectMapper mapper = new ObjectMapper();
-        var json = ((ActiveMQTextMessage) message).getText();
-        log.info("Response received: {}", json);
-        return mapper.readValue(json, responseType);
+    public Response send(DepositRequestBody request) {
+        return jmsTemplate.convertSendAndReceive(depositMq, request, Response.class);
     }
 
     @SneakyThrows
-    public DepositResponse send(DepositRequest request) {
-        MessageCreator messageCreator = session -> {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule());
-            try {
-                return session.createTextMessage(mapper.writeValueAsString(request));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        };
-        return sendAndReceive(messageCreator, DepositResponse.class, depositMq);
+    public Response send(TariffRequestBody request) {
+        return jmsTemplate.convertSendAndReceive(tariffMq, request, Response.class);
     }
 
     @SneakyThrows
-    public TariffResponse send(TariffRequest request) {
-        MessageCreator messageCreator = session -> {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                return session.createTextMessage(mapper.writeValueAsString(request));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        };
-        return sendAndReceive(messageCreator, TariffResponse.class, tariffMq);
+    public Response send(ClientDto request) {
+        return jmsTemplate.convertSendAndReceive(clientMq, request, Response.class);
     }
 
     @SneakyThrows
-    public ClientDto send(ClientDto request) {
-        MessageCreator messageCreator = session -> {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                return session.createTextMessage(mapper.writeValueAsString(request));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        };
-        return sendAndReceive(messageCreator, ClientDto.class, clientMq);
-    }
-
-    @SneakyThrows
-    public TarifficationResponse send(TarifficationStartRequest request) {
-        MessageCreator messageCreator = session -> {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                return session.createTextMessage(mapper.writeValueAsString(request));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        };
-        return sendAndReceive(messageCreator, TarifficationResponse.class, tarifficationMq);
+    public Response send(String request) {
+        return jmsTemplate.convertSendAndReceive(tarifficationMq, request, Response.class);
     }
 }

@@ -1,10 +1,9 @@
 package ru.nexign.jpa.dto;
 
-import ch.qos.logback.core.net.server.Client;
 import org.springframework.stereotype.Component;
-import ru.nexign.jpa.model.CallEntity;
-import ru.nexign.jpa.model.ClientEntity;
-import ru.nexign.jpa.model.TariffEntity;
+import ru.nexign.jpa.entity.CallEntity;
+import ru.nexign.jpa.entity.ClientEntity;
+import ru.nexign.jpa.entity.TariffEntity;
 
 import java.util.ArrayList;
 import java.util.List;

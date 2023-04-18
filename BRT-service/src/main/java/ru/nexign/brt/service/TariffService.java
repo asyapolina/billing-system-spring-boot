@@ -3,7 +3,8 @@ package ru.nexign.brt.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.dao.TariffRepository;
-import ru.nexign.jpa.model.TariffEntity;
+import ru.nexign.brt.exception.TariffNotFoundException;
+import ru.nexign.jpa.entity.TariffEntity;
 
 @Service
 public class TariffService {
@@ -16,6 +17,7 @@ public class TariffService {
     }
 
     public TariffEntity getTariff(String id) {
-        return tariffRepository.findById(id);
+        return tariffRepository.findById(id).orElseThrow(
+                () -> new TariffNotFoundException("Tariff with id " + id + " doesn't exist."));
     }
 }

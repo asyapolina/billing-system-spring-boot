@@ -6,7 +6,7 @@ import ru.nexign.brt.service.ClientService;
 import ru.nexign.brt.service.TariffService;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.model.TariffEntity;
+import ru.nexign.jpa.entity.TariffEntity;
 
 import java.util.ArrayList;
 import java.util.List;

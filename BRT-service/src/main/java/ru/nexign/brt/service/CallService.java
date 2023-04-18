@@ -22,25 +22,20 @@ public class CallService {
     public int getLastCallMonth() {
         CallDto call = getLastCall();
 
-        if (call == null) {
-            return FIRST_MONTH;
-        }
+        if (call == null) return FIRST_MONTH;
         return call.getEndTime().getMonth().getValue();
     }
 
     public int getLastCallYear() {
         CallDto call = getLastCall();
 
-        if (call == null) {
-            return FIRST_YEAR;
-        }
+        if (call == null) return FIRST_YEAR;
         return call.getEndTime().getYear();
     }
 
     private CallDto getLastCall() {
         var call = callRepository.findCallEntityWithMaxEndCallTime();
-        if (call == null) return null;
-        return mapper.toDto(call);
+        return call.map(mapper::toDto).orElse(null);
     }
 
 

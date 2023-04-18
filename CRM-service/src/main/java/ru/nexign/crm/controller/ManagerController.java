@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nexign.crm.messaging.MessageProducer;
 import ru.nexign.jpa.dto.ClientDto;
-import ru.nexign.jpa.enums.Action;
-import ru.nexign.jpa.request.TariffRequest;
-import ru.nexign.jpa.request.TarifficationStartRequest;
+import ru.nexign.jpa.enums.ResponseStatus;
+import ru.nexign.jpa.request.body.TariffRequestBody;
+import ru.nexign.jpa.request.body.TarifficationRequestBody;
 
 @RestController
 @RequestMapping(path = "/manager")
@@ -22,32 +22,35 @@ public class ManagerController {
     }
 
     @PatchMapping(path = "/changeTariff")
-    public ResponseEntity<?> changeTariff(@RequestBody TariffRequest request) {
-        try {
-            log.info("patch /changeTariff");
-            return ResponseEntity.ok(sender.send(request));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity<?> changeTariff(@RequestBody TariffRequestBody request) {
+        var response = sender.send(request);
+
+        if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.badRequest().body(response.getMessage());
         }
     }
 
     @PostMapping(path = "/abonent")
     public ResponseEntity<?> createClient(@RequestBody ClientDto request) {
-        try {
-            log.info("post /abonent");
-            return ResponseEntity.ok(sender.send(request));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        var response = sender.send(request);
+
+        if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.badRequest().body(response.getMessage());
         }
     }
 
     @PatchMapping(path = "/billing")
     public ResponseEntity<?> startTariffication(@RequestBody String request) {
-        try {
-            log.info("patch /billing");
-            return ResponseEntity.ok(sender.send(new TarifficationStartRequest(request)));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+        var response = sender.send(request);
+
+        if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.badRequest().body(response.getMessage());
         }
     }
 }

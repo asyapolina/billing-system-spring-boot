@@ -1,7 +1,7 @@
 package ru.nexign.jpa.model;
 
 import lombok.*;
-import ru.nexign.jpa.enums.CallType;
+import ru.nexign.jpa.entity.TariffEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

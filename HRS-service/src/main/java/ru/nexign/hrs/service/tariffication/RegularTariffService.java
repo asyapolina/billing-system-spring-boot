@@ -3,7 +3,7 @@ package ru.nexign.hrs.service.tariffication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.nexign.jpa.enums.CallType;
-import ru.nexign.jpa.model.TariffEntity;
+import ru.nexign.jpa.entity.TariffEntity;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -17,7 +17,7 @@ public class RegularTariffService implements TarifficationService {
         long totalTime = totalSpentMinutes + durationInMinutes;
 
         if (callType.equals(CallType.INCOMING.name())) {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
         if (callType.equals(CallType.OUTGOING.name())) {
             long extraTime = totalTime - tariff.getFirstMinuteLimit();

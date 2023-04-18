@@ -6,9 +6,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import ru.nexign.hrs.service.tariffication.TarifficationService;
 import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.request.TarifficationRequest;
-import ru.nexign.jpa.response.ClientReport;
-import ru.nexign.jpa.response.ReportResponse;
+import ru.nexign.jpa.model.CdrList;
+import ru.nexign.jpa.model.ClientReport;
+import ru.nexign.jpa.model.ReportList;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ public class ReportGeneratorService {
         this.applicationContext = applicationContext;
     }
 
-   public ReportResponse generateReport(TarifficationRequest request) {
-       ReportResponse response = new ReportResponse(new ArrayList<>());
+   public ReportList generateReport(CdrList request) {
+       ReportList response = new ReportList(new ArrayList<>());
        Map<String, ClientReport> responseMap = new HashMap<>();
 
        for (CallDataRecord cdr : request.getCdrList()) {

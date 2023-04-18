@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.model.PhoneNumberBalance;
-import ru.nexign.jpa.response.ClientReport;
-import ru.nexign.jpa.response.TarifficationResponse;
+import ru.nexign.jpa.model.ClientReport;
+import ru.nexign.jpa.response.body.TarifficationResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ public class BillingService {
         this.clientService = clientService;
     }
 
-   public TarifficationResponse makeMonthCharge(List<ClientReport> reports) {
-        TarifficationResponse response = new TarifficationResponse(new ArrayList<>());
+   public TarifficationResponseBody makeMonthCharge(List<ClientReport> reports) {
+        TarifficationResponseBody response = new TarifficationResponseBody(new ArrayList<>());
 
         for (var report: reports) {
             ClientDto client = clientService.withdrawMoney(report.getPhoneNumber(), report.getPrice());
@@ -27,7 +27,6 @@ public class BillingService {
 
             response.getNumbers().add(new PhoneNumberBalance(client.getPhoneNumber(), client.getBalance()));
         }
-
         return response;
    }
 

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.jpa.dao.ClientsRepository;
 import ru.nexign.jpa.dao.TariffsRepository;
-import ru.nexign.jpa.model.ClientEntity;
+import ru.nexign.jpa.entity.ClientEntity;
 ;import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;

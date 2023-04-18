@@ -1,16 +1,12 @@
-package ru.nexign.jpa.model;
+package ru.nexign.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import ru.nexign.jpa.enums.CallType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @NoArgsConstructor

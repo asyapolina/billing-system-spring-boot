@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
-import ru.nexign.jpa.request.CdrRequest;
-import ru.nexign.jpa.request.TarifficationRequest;
-import ru.nexign.jpa.response.ReportResponse;
+import ru.nexign.jpa.model.CdrPeriod;
+import ru.nexign.jpa.model.CdrList;
+import ru.nexign.jpa.model.ReportList;
 
 import javax.jms.Message;
 
@@ -45,7 +45,7 @@ public class MessageProducer {
     }
 
     @SneakyThrows
-    public TarifficationRequest send(CdrRequest request) {
+    public CdrList send(CdrPeriod request) {
         MessageCreator messageCreator = session -> {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
@@ -55,11 +55,11 @@ public class MessageProducer {
                 throw new RuntimeException(e);
             }
         };
-        return sendAndReceive(messageCreator, TarifficationRequest.class, cdrMq);
+        return sendAndReceive(messageCreator, CdrList.class, cdrMq);
     }
 
     @SneakyThrows
-    public ReportResponse send(TarifficationRequest request) {
+    public ReportList send(CdrList request) {
         MessageCreator messageCreator = session -> {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
@@ -70,8 +70,6 @@ public class MessageProducer {
             }
         };
 
-        var a = sendAndReceive(messageCreator, ReportResponse.class, reportMq);
-        log.info("received: {}", a);
-        return a;
+        return sendAndReceive(messageCreator, ReportList.class, reportMq);
     }
 }

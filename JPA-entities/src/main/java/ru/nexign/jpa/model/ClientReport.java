@@ -1,4 +1,4 @@
-package ru.nexign.jpa.response;
+package ru.nexign.jpa.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

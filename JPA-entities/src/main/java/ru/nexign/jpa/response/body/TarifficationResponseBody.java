@@ -1,4 +1,4 @@
-package ru.nexign.jpa.response;
+package ru.nexign.jpa.response.body;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class TarifficationResponse {
+public class TarifficationResponseBody {
     @JsonProperty("numbers")
     List<PhoneNumberBalance> numbers;
 }

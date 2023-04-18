@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nexign.crm.messaging.MessageProducer;
-import ru.nexign.jpa.request.DepositRequest;
+import ru.nexign.jpa.enums.ResponseStatus;
+import ru.nexign.jpa.request.body.DepositRequestBody;
 
 @RestController
 @RequestMapping(path = "/abonent")
@@ -19,12 +20,12 @@ public class AbonentController {
     }
 
     @PatchMapping(path = "/pay")
-    public ResponseEntity<?> depositMoney(@RequestBody DepositRequest request) {
-        try {
-            log.info("patch /pay");
-            return ResponseEntity.ok(sender.send(request));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity<?> depositMoney(@RequestBody DepositRequestBody request) {
+        var response = sender.send(request);
+        if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.badRequest().body(response.getMessage());
         }
     }
 }

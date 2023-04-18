@@ -1,4 +1,4 @@
-package ru.nexign.jpa.model;
+package ru.nexign.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.nexign.jpa.entity.ClientEntity;
 
 import java.math.BigDecimal;
 import java.util.List;

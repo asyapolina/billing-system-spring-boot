@@ -2,12 +2,11 @@ package ru.nexign.brt.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.nexign.jpa.dto.ClientDto;
-import ru.nexign.jpa.model.ClientEntity;
+import ru.nexign.jpa.entity.ClientEntity;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
-    ClientEntity findByPhoneNumber(String phoneNumber);
+    Optional<ClientEntity> findByPhoneNumber(String phoneNumber);
 }

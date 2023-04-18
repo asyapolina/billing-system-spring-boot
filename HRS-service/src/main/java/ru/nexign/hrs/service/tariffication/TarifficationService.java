@@ -1,12 +1,10 @@
 package ru.nexign.hrs.service.tariffication;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.nexign.jpa.dto.CallDto;
-import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.model.TariffEntity;
-import ru.nexign.jpa.response.ClientReport;
+import ru.nexign.jpa.entity.TariffEntity;
+import ru.nexign.jpa.model.ClientReport;
 
 import java.math.BigDecimal;
 import java.time.Duration;

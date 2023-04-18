@@ -8,7 +8,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import ru.nexign.cdr.service.CdrService;
-import ru.nexign.jpa.request.CdrRequest;
+import ru.nexign.jpa.model.CdrPeriod;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class MessageConsumer {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         try {
-            var cdrRequest = mapper.readValue(request, CdrRequest.class);
+            var cdrRequest = mapper.readValue(request, CdrPeriod.class);
             var response = service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
             return mapper.writeValueAsString(response);
         } catch (IOException e) {

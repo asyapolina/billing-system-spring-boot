@@ -9,11 +9,10 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.service.*;
-import ru.nexign.jpa.enums.Action;
-import ru.nexign.jpa.request.CdrRequest;
-import ru.nexign.jpa.request.TarifficationStartRequest;
-
-import java.util.Objects;
+import ru.nexign.jpa.enums.ResponseStatus;
+import ru.nexign.jpa.model.CdrPeriod;
+import ru.nexign.jpa.request.Request;
+import ru.nexign.jpa.response.Response;
 
 
 @Service@Slf4j
@@ -29,8 +28,8 @@ public class TarifficationMessageConsumer {
     }
 
     @JmsListener(destination = "${tariffication.mq}")
-    public String receiveTarifficationRequest(@Payload String request) {
-        log.info("Request received: {}", request);
+    public Response receiveTarifficationRequest(@Payload Request request) {
+        log.info("Request received: {}", request.getMessage());
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
@@ -38,13 +37,7 @@ public class TarifficationMessageConsumer {
         var year = callService.getLastCallYear();
         log.info("run tariffication");
 
-        try {
-            var a = mapper.writeValueAsString(tarifficationService.runTariffication(new CdrRequest(month, year)));
-
-            return a;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return tarifficationService.runTariffication(new CdrPeriod(month, year));
     }
 
 }

@@ -1,4 +1,4 @@
-package ru.nexign.jpa.request;
+package ru.nexign.jpa.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class CdrRequest implements Serializable {
+public class CdrPeriod implements Serializable {
     private int month;
     private int year;
 }

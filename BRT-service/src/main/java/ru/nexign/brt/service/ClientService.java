@@ -2,19 +2,18 @@ package ru.nexign.brt.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.nexign.brt.authorization.ClientAuthorization;
 import ru.nexign.brt.dao.ClientRepository;
 import ru.nexign.brt.dao.TariffRepository;
 import ru.nexign.brt.exception.BrtException;
 import ru.nexign.brt.exception.ClientNotFoundException;
+import ru.nexign.brt.exception.TariffNotFoundException;
 import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.dto.Mapper;
-import ru.nexign.jpa.model.CallDataRecord;
-import ru.nexign.jpa.request.DepositRequest;
-import ru.nexign.jpa.request.TariffRequest;
-import ru.nexign.jpa.response.DepositResponse;
-import ru.nexign.jpa.response.TariffResponse;
+import ru.nexign.jpa.request.body.DepositRequestBody;
+import ru.nexign.jpa.request.body.TariffRequestBody;
+import ru.nexign.jpa.response.body.DepositResponseBody;
+import ru.nexign.jpa.response.body.TariffResponseBody;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,11 +33,12 @@ public class ClientService {
     }
 
     public ClientDto createClient(ClientDto clientDto) {
-        if (clientRepository.findByPhoneNumber(clientDto.getPhoneNumber()) != null) {
-            // exception
+        if (clientRepository.findByPhoneNumber(clientDto.getPhoneNumber()).isPresent()) {
+            throw new BrtException("Client with phone number " + clientDto.getPhoneNumber() + " already exists.");
         }
 
-        var tariff = tariffRepository.findById(clientDto.getTariffId());
+        var tariff = tariffRepository.findById(clientDto.getTariffId()).orElseThrow(
+                () -> new TariffNotFoundException("Tariff with id " + clientDto.getTariffId() + " doesn't exist."));
         clientRepository.save(mapper.toEntity(clientDto, tariff));
         return clientDto;
     }
@@ -48,45 +48,38 @@ public class ClientService {
             throw new BrtException("Incorrect phone number.");
         }
         var client = clientRepository.findByPhoneNumber(phoneNumber);
-        if (client == null) {
-            return null;
-        }
-        return mapper.toDto(client);
+        return client.map(mapper::toDto).orElse(null);
     }
 
-    public TariffResponse changeTariff(TariffRequest request) {
-        var client = clientRepository.findByPhoneNumber(request.getPhoneNumber());
-        var tariff = tariffRepository.findById(request.getTariffId());
-        if (client == null) {
-            // exception
-        }
-        if (tariff == null) {
-            // exception
-        }
+    public TariffResponseBody changeTariff(TariffRequestBody request) {
+        var client = clientRepository.findByPhoneNumber(request.getPhoneNumber()).orElseThrow(
+                () -> new ClientNotFoundException("Client with phone number " + request.getPhoneNumber() + " doesn't exist."));
+        var tariff = tariffRepository.findById(request.getTariffId()).orElseThrow(
+                () -> new TariffNotFoundException("Tariff with id " + request.getTariffId() + " doesn't exist."));
 
         client.setTariff(tariff);
         clientRepository.save(client);
-        return new TariffResponse(client.getId(), client.getPhoneNumber(), tariff.getId());
+        return new TariffResponseBody(client.getId(), client.getPhoneNumber(), tariff.getId());
     }
 
-    public DepositResponse depositMoney(DepositRequest request) {
-        var client = clientRepository.findByPhoneNumber(request.getPhoneNumber());
-        if (client == null) {
-            // exception
-        }
+    public DepositResponseBody depositMoney(DepositRequestBody request) {
+        var client = clientRepository.findByPhoneNumber(request.getPhoneNumber()).orElseThrow(
+                () -> new ClientNotFoundException("Client with phone number " + request.getPhoneNumber() + " doesn't exist."));
 
         client.setBalance(client.getBalance().add(request.getMoney()));
         clientRepository.save(client);
-        return new DepositResponse(client.getId(), client.getPhoneNumber(), client.getBalance());
+        return new DepositResponseBody(client.getId(), client.getPhoneNumber(), client.getBalance());
     }
 
     public ClientDto withdrawMoney(String phoneNumber, BigDecimal money) {
-        var client = clientRepository.findByPhoneNumber(phoneNumber);
-        if (client == null) {
-            // exception
-        }
+        var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
+                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-        client.setBalance(client.getBalance().subtract(money));
+        if (client.getBalance() == BigDecimal.ZERO) {
+            client.setBalance(BigDecimal.ZERO.subtract(money));
+        } else {
+            client.setBalance(client.getBalance().subtract(money));
+        }
         clientRepository.save(client);
         return mapper.toDto(client);
     }
@@ -95,13 +88,10 @@ public class ClientService {
         if (phoneNumber == null || phoneNumber.length() != PHONE_NUMBER_LENGTH) {
             throw new BrtException("Incorrect phone number.");
         }
-        var client = clientRepository.findByPhoneNumber(phoneNumber);
-        if (client == null) {
-            throw new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist.");
-        }
+        var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
+                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-        for (var call: calls) {
-            client.getCalls().add(mapper.toEntity(call));
-        }
+        calls.forEach(call -> client.getCalls().add(mapper.toEntity(call)));
+        clientRepository.save(client);
     }
 }

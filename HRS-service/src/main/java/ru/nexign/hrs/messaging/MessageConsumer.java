@@ -9,8 +9,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import ru.nexign.hrs.service.report.ReportGeneratorService;
-import ru.nexign.jpa.request.TarifficationRequest;
-import ru.nexign.jpa.response.ReportResponse;
+import ru.nexign.jpa.model.CdrList;
 
 @Component
 @Slf4j
@@ -29,7 +28,7 @@ public class MessageConsumer {
         mapper.registerModule(new JavaTimeModule());
 
         try {
-            var tarifficationRequest = mapper.readValue(request, TarifficationRequest.class);
+            var tarifficationRequest = mapper.readValue(request, CdrList.class);
             log.info("Request received: {}", request);
 
             var response = service.generateReport(tarifficationRequest);
