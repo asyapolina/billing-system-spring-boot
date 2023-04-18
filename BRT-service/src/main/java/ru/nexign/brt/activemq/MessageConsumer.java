@@ -13,8 +13,6 @@ import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.DepositRequest;
 import ru.nexign.jpa.request.TariffRequest;
 
-import java.time.LocalDateTime;
-
 @Service
 @Slf4j
 public class MessageConsumer {

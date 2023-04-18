@@ -46,7 +46,6 @@ public class CallTimeGenerator {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatPattern);
         String callStartDateTimeString = callStartDateTime.format(formatter);
         String callEndDateTimeString = callEndDateTime.format(formatter);
-        log.info(callEndDateTimeString);
 
         return callStartDateTimeString + "," + callEndDateTimeString;
     }

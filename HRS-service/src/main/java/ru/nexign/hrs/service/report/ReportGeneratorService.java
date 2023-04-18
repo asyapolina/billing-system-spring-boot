@@ -41,10 +41,10 @@ public class ReportGeneratorService {
            if (report == null) {
                report = new ClientReport(phoneNumber, BigDecimal.ZERO, new ArrayList<>());
                responseMap.put(phoneNumber, report);
-               response.getClientReports().add(report);
            }
 
            ClientReport fullReport = tarifficationService.tarifficate(cdr, report);
+           log.info("{}", fullReport.getPrice());
            response.getClientReports().add(fullReport);
        }
 

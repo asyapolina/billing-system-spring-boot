@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.cdr.generator.CdrGenerator;
-import ru.nexign.cdr.messaging.MessageProducer;
 import ru.nexign.cdr.parser.CdrParser;
 import ru.nexign.jpa.model.CallDataRecord;
 import ru.nexign.jpa.request.TarifficationRequest;
@@ -17,13 +16,11 @@ import java.util.List;
 public class CdrService {
     private final CdrGenerator generator;
     private final CdrParser parser;
-    private final MessageProducer producer;
 
     @Autowired
-    public CdrService(CdrGenerator generator, CdrParser parser, MessageProducer producer) {
+    public CdrService(CdrGenerator generator, CdrParser parser) {
         this.generator = generator;
         this.parser = parser;
-        this.producer = producer;
     }
 
     public void generateCdrFile(int month, int year) {
@@ -34,7 +31,7 @@ public class CdrService {
         }
     }
 
-    public void sendCdrData(String filePath, int month, int year) throws IOException {
+    public TarifficationRequest sendCdrData(String filePath, int month, int year) throws IOException {
         generateCdrFile(month, year);
         List<CallDataRecord> cdrList;
 
@@ -45,6 +42,6 @@ public class CdrService {
             throw new IOException("Ошибка при чтении файла: " + e.getMessage());
         }
 
-        producer.send(new TarifficationRequest(cdrList));
+        return new TarifficationRequest(cdrList);
     }
 }

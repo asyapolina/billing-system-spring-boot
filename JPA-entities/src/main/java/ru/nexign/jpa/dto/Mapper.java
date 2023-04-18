@@ -39,4 +39,8 @@ public class Mapper {
     public CallDto toDto(CallEntity entity) {
         return new CallDto(entity.getCallType(), entity.getStartTime(), entity.getEndTime(), entity.getDuration(), entity.getCost());
     }
+
+    public CallEntity toEntity(CallDto dto) {
+        return new CallEntity(dto.getCallType(), dto.getStartTime(), dto.getEndTime(), dto.getDuration(), dto.getCost());
+    }
 }

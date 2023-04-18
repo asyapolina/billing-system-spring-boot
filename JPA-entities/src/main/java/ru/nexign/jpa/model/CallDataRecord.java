@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 public class CallDataRecord implements Serializable {
     private String phoneNumber;
-    private CallType callType;
+    private String callType;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private TariffEntity tariff;

@@ -12,7 +12,7 @@ import java.time.Duration;
 @Slf4j
 public class MinuteTariffService implements TarifficationService {
     @Override
-    public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, CallType callType) {
+    public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, String callType) {
         long durationInMinutes = (long) Math.ceil(callDuration.getSeconds() / 60.0);
         return tariff.getFirstMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes));
     }

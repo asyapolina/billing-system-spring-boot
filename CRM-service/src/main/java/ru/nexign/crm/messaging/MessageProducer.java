@@ -17,6 +17,7 @@ import ru.nexign.jpa.request.TariffRequest;
 import ru.nexign.jpa.request.TarifficationStartRequest;
 import ru.nexign.jpa.response.DepositResponse;
 import ru.nexign.jpa.response.TariffResponse;
+import ru.nexign.jpa.response.TarifficationResponse;
 
 import javax.jms.Message;
 
@@ -92,9 +93,15 @@ public class MessageProducer {
     }
 
     @SneakyThrows
-    public void send(TarifficationStartRequest request) {
-        ObjectMapper mapper = new ObjectMapper();
-
-        jmsTemplate.convertAndSend(tarifficationMq, mapper.writeValueAsString(request));
+    public TarifficationResponse send(TarifficationStartRequest request) {
+        MessageCreator messageCreator = session -> {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                return session.createTextMessage(mapper.writeValueAsString(request));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        };
+        return sendAndReceive(messageCreator, TarifficationResponse.class, tarifficationMq);
     }
 }

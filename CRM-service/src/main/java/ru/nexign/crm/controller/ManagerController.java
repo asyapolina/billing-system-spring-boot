@@ -42,12 +42,12 @@ public class ManagerController {
     }
 
     @PatchMapping(path = "/billing")
-    public void startTariffication(@RequestBody String request) {
-//        try {
+    public ResponseEntity<?> startTariffication(@RequestBody String request) {
+        try {
             log.info("patch /billing");
-            sender.send(new TarifficationStartRequest(request));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
+            return ResponseEntity.ok(sender.send(new TarifficationStartRequest(request)));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

@@ -29,13 +29,15 @@ public class ClientAuthorization {
         for (CallDataRecord cdr : cdrList) {
             if (cdr.getPhoneNumber() != null) {
                 ClientDto client = clientService.getByPhoneNumber(cdr.getPhoneNumber());
-                TariffEntity tariff = tariffService.getTariff(client.getTariffId());
-                if (client.getBalance().doubleValue() > 0.0 && tariff != null) {
-                    cdr.setTariff(tariff);
+                if (client != null) {
+                    TariffEntity tariff = tariffService.getTariff(client.getTariffId());
+                    if (client.getBalance().doubleValue() > 0.0 && tariff != null) {
+                        cdr.setTariff(tariff);
+                        filteredCdrList.add(cdr);
+                    }
                 }
-            }
 
-            filteredCdrList.add(cdr);
+            }
         }
         return filteredCdrList;
     }

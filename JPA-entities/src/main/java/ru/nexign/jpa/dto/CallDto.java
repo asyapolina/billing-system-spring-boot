@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CallDto implements Serializable {
-    private CallType callType;
+    private String callType;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String duration;

@@ -1,7 +1,7 @@
 package ru.nexign.cdr.messaging;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -23,14 +23,16 @@ public class MessageConsumer {
         this.service = service;
     }
 
-    @JmsListener(destination = "${cdr.request.mq}")
-    public void receiveRequest(@Payload String request) {
+    @JmsListener(destination = "${cdr.mq}")
+    public String receiveRequest(@Payload String request) {
         log.info("Cdr received: {}", request);
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         try {
             var cdrRequest = mapper.readValue(request, CdrRequest.class);
-            service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
+            var response = service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
+            return mapper.writeValueAsString(response);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

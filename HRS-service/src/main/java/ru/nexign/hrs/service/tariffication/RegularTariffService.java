@@ -12,14 +12,14 @@ import java.time.Duration;
 @Slf4j
 public class RegularTariffService implements TarifficationService {
     @Override
-    public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, CallType callType) {
+    public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, String callType) {
         long durationInMinutes = (long) Math.ceil(callDuration.getSeconds() / 60.0);
         long totalTime = totalSpentMinutes + durationInMinutes;
 
-        if (callType.equals(CallType.INCOMING)) {
+        if (callType.equals(CallType.INCOMING.name())) {
             return new BigDecimal(0);
         }
-        if (callType.equals(CallType.OUTGOING)) {
+        if (callType.equals(CallType.OUTGOING.name())) {
             long extraTime = totalTime - tariff.getFirstMinuteLimit();
 
             if (extraTime <= 0) {

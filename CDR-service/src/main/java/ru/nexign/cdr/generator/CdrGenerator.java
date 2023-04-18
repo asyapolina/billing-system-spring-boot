@@ -19,7 +19,7 @@ public class CdrGenerator {
         List<String> cdrList = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 10000; i++) {
             // Генерация типа вызова (01 - исходящий, 02 - входящий)
             String callType = random.nextInt(2) == 0 ? "01" : "02";
 

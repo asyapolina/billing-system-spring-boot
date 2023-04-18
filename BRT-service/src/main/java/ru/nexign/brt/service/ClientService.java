@@ -2,18 +2,22 @@ package ru.nexign.brt.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.nexign.brt.authorization.ClientAuthorization;
 import ru.nexign.brt.dao.ClientRepository;
 import ru.nexign.brt.dao.TariffRepository;
 import ru.nexign.brt.exception.BrtException;
 import ru.nexign.brt.exception.ClientNotFoundException;
+import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.dto.Mapper;
+import ru.nexign.jpa.model.CallDataRecord;
 import ru.nexign.jpa.request.DepositRequest;
 import ru.nexign.jpa.request.TariffRequest;
 import ru.nexign.jpa.response.DepositResponse;
 import ru.nexign.jpa.response.TariffResponse;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ClientService {
@@ -45,7 +49,7 @@ public class ClientService {
         }
         var client = clientRepository.findByPhoneNumber(phoneNumber);
         if (client == null) {
-            throw new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist.");
+            return null;
         }
         return mapper.toDto(client);
     }
@@ -85,5 +89,19 @@ public class ClientService {
         client.setBalance(client.getBalance().subtract(money));
         clientRepository.save(client);
         return mapper.toDto(client);
+    }
+
+    public void AddClientCalls(String phoneNumber, List<CallDto> calls) {
+        if (phoneNumber == null || phoneNumber.length() != PHONE_NUMBER_LENGTH) {
+            throw new BrtException("Incorrect phone number.");
+        }
+        var client = clientRepository.findByPhoneNumber(phoneNumber);
+        if (client == null) {
+            throw new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist.");
+        }
+
+        for (var call: calls) {
+            client.getCalls().add(mapper.toEntity(call));
+        }
     }
 }

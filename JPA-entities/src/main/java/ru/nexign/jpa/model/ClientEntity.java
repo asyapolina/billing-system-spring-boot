@@ -29,12 +29,12 @@ public class ClientEntity {
     private BigDecimal balance;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tariff_id", nullable = false)
     private TariffEntity tariff;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
     private List<CallEntity> calls;
 
     public ClientEntity(String phoneNumber, BigDecimal balance, TariffEntity tariff, List<CallEntity> calls) {

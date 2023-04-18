@@ -16,7 +16,7 @@ public class PhoneNumberGenerator {
             char formatChar = formatPattern.charAt(i);
 
             if (formatChar == 'x') {
-                phoneNumber.append(random.nextInt(10)); // подставляет рандомные цифры вместо х
+                phoneNumber.append(random.nextInt(5)); // подставляет рандомные цифры вместо х
             } else {
                 phoneNumber.append(formatChar);
             }

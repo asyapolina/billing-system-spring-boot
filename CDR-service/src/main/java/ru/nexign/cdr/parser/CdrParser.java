@@ -34,13 +34,7 @@ public class CdrParser {
             LocalDateTime startTime = LocalDateTime.parse(fields[2].trim(), formatter);
             LocalDateTime endTime = LocalDateTime.parse(fields[3].trim(), formatter);
 
-            CallType callTypeEnum = null;
-            if (callType.equals(CallType.INCOMING.name())) {
-                callTypeEnum = CallType.INCOMING;
-            } else if (callType.equals(CallType.OUTGOING.name())) {
-                callTypeEnum = CallType.OUTGOING;
-            }
-            cdrList.add(new CallDataRecord(phoneNumber, callTypeEnum, startTime, endTime, null));
+            cdrList.add(new CallDataRecord(phoneNumber, callType, startTime, endTime, null));
         }
         reader.close();
 

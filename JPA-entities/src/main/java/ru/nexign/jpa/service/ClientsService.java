@@ -31,10 +31,10 @@ public class ClientsService {
         for (int i = 1; i <= numberOfClients; i++) {
             String phoneNumber;
             do {
-                phoneNumber = "97" + generateRandomNumber(0, 2) + generateRandomNumber(0, 2) +
-                        generateRandomNumber(3, 6) + generateRandomNumber(5, 7)
-                        + generateRandomNumber(3, 6)  + generateRandomNumber(5, 7)
-                        + generateRandomNumber(7, 9) + generateRandomNumber(7, 9) + generateRandomNumber(7, 9);
+                phoneNumber = "79" + generateRandomNumber(0, 5) + generateRandomNumber(0, 5) +
+                        generateRandomNumber(0, 5) + generateRandomNumber(0, 5)
+                        + generateRandomNumber(0, 5)  + generateRandomNumber(0, 5)
+                        + generateRandomNumber(0, 5) + generateRandomNumber(0, 5) + generateRandomNumber(0, 5);
             } while (phoneNumbers.contains(phoneNumber)); // Проверка на уникальность номера телефона
             phoneNumbers.add(phoneNumber); // Добавление сгенерированного номера в множество
 

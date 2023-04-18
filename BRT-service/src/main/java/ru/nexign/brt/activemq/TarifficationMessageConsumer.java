@@ -7,56 +7,44 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
-import ru.nexign.brt.service.CallService;
+import ru.nexign.brt.service.*;
+import ru.nexign.jpa.enums.Action;
 import ru.nexign.jpa.request.CdrRequest;
-import ru.nexign.jpa.request.TarifficationRequest;
+import ru.nexign.jpa.request.TarifficationStartRequest;
+
+import java.util.Objects;
 
 
 @Service@Slf4j
 public class TarifficationMessageConsumer {
-    public static final int FIRST_MONTH = 11;
-    public static final int FIRST_YEAR = 2000;
 
     private final CallService callService;
+    private final TarifficationService tarifficationService;
 
     @Autowired
-    public TarifficationMessageConsumer(CallService callService) {
-
+    public TarifficationMessageConsumer(CallService callService, TarifficationService tarifficationService) {
         this.callService = callService;
+        this.tarifficationService = tarifficationService;
     }
 
     @JmsListener(destination = "${tariffication.mq}")
-    @SendTo("${cdr.request.mq}")
     public String receiveTarifficationRequest(@Payload String request) {
-        log.info("Request received: {}", request);
-        ObjectMapper mapper = new ObjectMapper();
-
-        var month = callService.getLastCallMonth();
-        var year = callService.getLastCallYear();
-        if (year == 0 || month == 0) {
-            month = FIRST_MONTH;
-            year = FIRST_YEAR;
-        }
-        try {
-            return mapper.writeValueAsString(new CdrRequest(month, year));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @JmsListener(destination = "${cdr.mq}")
-    //@SendTo("${cdr.request.mq}")
-    public void receiveCdrData(@Payload String request) {
         log.info("Request received: {}", request);
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
+        var month = callService.getLastCallMonth();
+        var year = callService.getLastCallYear();
+        log.info("run tariffication");
+
         try {
-            log.info("Cdr size: {}", mapper.readValue(request, TarifficationRequest.class).getCdrList().get(0).getEndTime());
+            var a = mapper.writeValueAsString(tarifficationService.runTariffication(new CdrRequest(month, year)));
+
+            return a;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

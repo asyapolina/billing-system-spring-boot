@@ -46,6 +46,6 @@ public class TariffEntity {
     private Boolean isForClientsFree;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tariff")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tariff")
     private List<ClientEntity> clients;
 }
