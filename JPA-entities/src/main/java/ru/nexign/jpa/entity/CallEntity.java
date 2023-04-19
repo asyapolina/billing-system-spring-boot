@@ -30,7 +30,7 @@ public class CallEntity {
     @Column(name = "duration", nullable = false)
     private String duration;
 
-    @Column(name = "cost", nullable = false, scale = 2)
+    @Column(name = "cost", scale = 2)
     private BigDecimal cost;
 
     @JsonBackReference
@@ -38,11 +38,12 @@ public class CallEntity {
     @JoinColumn(name = "client_id", nullable = false)
     private ClientEntity client;
 
-    public CallEntity(String callType, LocalDateTime startTime, LocalDateTime endTime, String duration, BigDecimal cost) {
+    public CallEntity(String callType, LocalDateTime startTime, LocalDateTime endTime, String duration, BigDecimal cost, ClientEntity client) {
         this.callType = callType;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
         this.cost = cost;
+        this.client = client;
     }
 }

@@ -4,55 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: tariffication endpoint implementation">
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/TariffNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/enums/ResponseStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/Response.java" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="refactor: exception handling">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/BrtServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/BrtServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/CallRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/CallRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/TariffRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/TariffRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/BillingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/BillingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/ClientNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/ClientNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/TariffNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/TariffNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/CallService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/CallService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TariffService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TarifficationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HRS-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/RegularTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/RegularTariffService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/UnlimitedTariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/UnlimitedTariffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/ClientsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/ClientsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/TariffsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/TariffsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallDataRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CallEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/CallEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/ClientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/TariffEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/TariffEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/CdrRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CdrPeriod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/DepositRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/body/DepositRequestBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TariffRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/body/TariffRequestBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TarifficationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/CdrList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/TarifficationStartRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/body/TarifficationRequestBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ClientReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ClientReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/DepositResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/body/DepositResponseBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/ReportResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/model/ReportList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TariffResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/body/TariffResponseBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/TarifficationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/body/TarifficationResponseBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/service/ClientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/service/ClientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/CallEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/CallEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdr/cdr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cdr/cdr.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +103,7 @@
       <recent name="ru.nexign.brt.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.HrsServiceApplication">
+  <component name="RunManager" selected="Spring Boot.BrtServiceApplication">
     <configuration name="BrtServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="BRT-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.brt.BrtServiceApplication" />
@@ -218,7 +194,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="52059000" />
+      <workItem from="1681717957873" duration="58853000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -367,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681821231029</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="refactor: exception handling">
+      <created>1681844270434</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1681844270434</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +391,8 @@
     <MESSAGE value="feat: tariffication messages" />
     <MESSAGE value="feat: messaging" />
     <MESSAGE value="feat: tariffication endpoint implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: tariffication endpoint implementation" />
+    <MESSAGE value="refactor: exception handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: exception handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -439,11 +423,6 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/RegularTariffService.java</url>
           <line>18</line>
           <option name="timeStamp" value="36" />
@@ -454,9 +433,9 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="38" />
+          <url>file://$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

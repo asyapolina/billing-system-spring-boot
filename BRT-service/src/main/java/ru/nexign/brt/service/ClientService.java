@@ -1,7 +1,9 @@
 package ru.nexign.brt.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.nexign.brt.dao.CallRepository;
 import ru.nexign.brt.dao.ClientRepository;
 import ru.nexign.brt.dao.TariffRepository;
 import ru.nexign.brt.exception.BrtException;
@@ -19,16 +21,19 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ClientService {
     private final int PHONE_NUMBER_LENGTH = 11;
     private final ClientRepository clientRepository;
     private final TariffRepository tariffRepository;
+    private final CallRepository callRepository;
     private final Mapper mapper;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, Mapper mapper) {
+    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, CallRepository callRepository, Mapper mapper) {
         this.clientRepository = clientRepository;
         this.tariffRepository = tariffRepository;
+        this.callRepository = callRepository;
         this.mapper = mapper;
     }
 
@@ -75,9 +80,7 @@ public class ClientService {
         var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-        if (client.getBalance() == BigDecimal.ZERO) {
-            client.setBalance(BigDecimal.ZERO.subtract(money));
-        } else {
+        if (money != null) {
             client.setBalance(client.getBalance().subtract(money));
         }
         clientRepository.save(client);
@@ -91,7 +94,8 @@ public class ClientService {
         var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-        calls.forEach(call -> client.getCalls().add(mapper.toEntity(call)));
+        calls.forEach(call -> callRepository.save(mapper.toEntity(call, client)));
+        log.info("{}", callRepository.findAll());
         clientRepository.save(client);
     }
 }

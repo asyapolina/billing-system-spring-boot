@@ -37,6 +37,4 @@ public class CallService {
         var call = callRepository.findCallEntityWithMaxEndCallTime();
         return call.map(mapper::toDto).orElse(null);
     }
-
-
 }

@@ -29,35 +29,33 @@ public class CrudMessageConsumer {
 
     @JmsListener(destination = "${deposit.mq}")
     public Response receiveDepositRequest(@Payload Request request) {
-        log.info("Request received: {}", request);
+        log.info("Request received: {}", request.getMessage());
         ObjectMapper mapper = new ObjectMapper();
 
         try {
             var response = clientService.depositMoney(mapper.readValue(request.getMessage(), DepositRequestBody.class));
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
-        } catch (JsonProcessingException e) {
-            e.getStackTrace();
-            return new Response(e.getMessage(), ResponseStatus.ERROR);
+        } catch (JsonProcessingException | RuntimeException e) {
+            return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
         }
     }
 
     @JmsListener(destination = "${tariff.mq}")
     public Response receiveTariffRequest(@Payload Request request) {
-        log.info("Request received: {}", request);
+        log.info("Request received: {}", request.getMessage());
         ObjectMapper mapper = new ObjectMapper();
 
         try {
             var response = clientService.changeTariff(mapper.readValue(request.getMessage(), TariffRequestBody.class));
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
-        } catch (JsonProcessingException e) {
-            e.getStackTrace();
-            return new Response(e.getMessage(), ResponseStatus.ERROR);
+        } catch (JsonProcessingException | RuntimeException e) {
+            return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
         }
     }
 
     @JmsListener(destination = "${client.mq}")
-    public Response receiveClientDto(@Payload Response request) {
-        log.info("Request received: {}", request);
+    public Response receiveClientDto(@Payload Request request) {
+        log.info("Request received: {}", request.getMessage());
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
@@ -65,9 +63,8 @@ public class CrudMessageConsumer {
             var response = clientService.createClient(mapper.readValue(request.getMessage(), ClientDto.class));
 
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
-        } catch (JsonProcessingException e) {
-            e.getStackTrace();
-            return new Response(e.getMessage(), ResponseStatus.ERROR);
+        } catch (JsonProcessingException | RuntimeException e) {
+            return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
         }
     }
 }

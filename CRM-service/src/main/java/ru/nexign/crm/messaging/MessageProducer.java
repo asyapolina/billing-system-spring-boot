@@ -13,6 +13,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 import ru.nexign.jpa.dto.ClientDto;
+import ru.nexign.jpa.request.Request;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.request.body.TarifficationRequestBody;
@@ -42,32 +43,30 @@ public class MessageProducer {
         this.tarifficationMq = tarifficationMq;
     }
 
-//    @SneakyThrows
-//    private <T> T sendAndReceive(MessageCreator messageCreator, Class<T> responseType, String destination) {
-//        Message message = jmsTemplate.sendAndReceive(destination, messageCreator);
-//        ObjectMapper mapper = new ObjectMapper();
-//        var json = ((ActiveMQTextMessage) message).getText();
-//        log.info("Response received: {}", json);
-//        return mapper.readValue(json, responseType);
-//    }
-
     @SneakyThrows
-    public Response send(DepositRequestBody request) {
+    public Response send(DepositRequestBody body) {
+        ObjectMapper mapper = new ObjectMapper();
+        var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(depositMq, request, Response.class);
     }
 
     @SneakyThrows
-    public Response send(TariffRequestBody request) {
+    public Response send(TariffRequestBody body) {
+        ObjectMapper mapper = new ObjectMapper();
+        var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(tariffMq, request, Response.class);
     }
 
     @SneakyThrows
-    public Response send(ClientDto request) {
+    public Response send(ClientDto body) {
+        ObjectMapper mapper = new ObjectMapper();
+        var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(clientMq, request, Response.class);
     }
 
     @SneakyThrows
-    public Response send(String request) {
+    public Response send(String body) {
+        var request = new Request(body);
         return jmsTemplate.convertSendAndReceive(tarifficationMq, request, Response.class);
     }
 }

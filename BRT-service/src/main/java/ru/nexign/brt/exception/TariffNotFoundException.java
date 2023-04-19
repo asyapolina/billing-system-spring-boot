@@ -1,6 +1,6 @@
 package ru.nexign.brt.exception;
 
-public class TariffNotFoundException extends BrtException {
+public class TariffNotFoundException extends RuntimeException {
     public TariffNotFoundException(String message) {
         super(message);
     }

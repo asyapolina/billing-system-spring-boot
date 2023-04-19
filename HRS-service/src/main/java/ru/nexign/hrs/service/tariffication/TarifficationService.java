@@ -24,7 +24,7 @@ public interface TarifficationService {
         String duration = calculateCallDurationToString(callDuration);
 
         long totalSpentMinutes = 0;
-        if (report.getPrice().equals(BigDecimal.ZERO)) {
+        if (report.getPrice() == null || report.getPrice().equals(BigDecimal.ZERO)) {
             totalSpentMinutes = calculateTotalCallDuration(report.getCalls());
         }
 
@@ -34,7 +34,7 @@ public interface TarifficationService {
         CallDto callDto = new CallDto(cdr.getCallType(), cdr.getStartTime(), cdr.getEndTime(), duration, callCost);
         report.getCalls().add(callDto);
 
-        if (Objects.equals(report.getPrice(), BigDecimal.ZERO)) {
+        if (report.getPrice() == null || Objects.equals(report.getPrice(), BigDecimal.ZERO)) {
             report.setPrice(callDto.getCost());
         } else {
             report.setPrice(report.getPrice().add(callDto.getCost()));

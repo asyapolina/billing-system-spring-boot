@@ -1,6 +1,6 @@
 package ru.nexign.brt.exception;
 
-public class ClientNotFoundException extends BrtException {
+public class ClientNotFoundException extends RuntimeException {
     public ClientNotFoundException(String message) {
         super(message);
     }

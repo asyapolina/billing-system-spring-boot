@@ -8,7 +8,10 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import ru.nexign.cdr.service.CdrService;
+import ru.nexign.jpa.enums.ResponseStatus;
 import ru.nexign.jpa.model.CdrPeriod;
+import ru.nexign.jpa.request.Request;
+import ru.nexign.jpa.response.Response;
 
 import java.io.IOException;
 
@@ -24,17 +27,17 @@ public class MessageConsumer {
     }
 
     @JmsListener(destination = "${cdr.mq}")
-    public String receiveRequest(@Payload String request) {
-        log.info("Cdr received: {}", request);
+    public Response receiveRequest(@Payload Request request) {
+        log.info("Cdr received: {}", request.getMessage());
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         try {
-            var cdrRequest = mapper.readValue(request, CdrPeriod.class);
+            var cdrRequest = mapper.readValue(request.getMessage(), CdrPeriod.class);
             var response = service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
-            return mapper.writeValueAsString(response);
+            return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return new Response("Cdr service: " + e.getMessage(), ResponseStatus.ERROR);
         }
     }
 }
