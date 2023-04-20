@@ -12,9 +12,6 @@ public class JpaEntitesApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(JpaEntitesApplication.class, args);
-
-//		final ClientsService controller = applicationContext.getBean(ClientsService.class);
-//		controller.addClients();
 	}
 
 }

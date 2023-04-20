@@ -35,15 +35,15 @@ public class CallEntity {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", nullable = false)
-    private ClientEntity client;
+    @JoinColumn(name = "report_id", nullable = false)
+    private ReportEntity report;
 
-    public CallEntity(String callType, LocalDateTime startTime, LocalDateTime endTime, String duration, BigDecimal cost, ClientEntity client) {
+    public CallEntity(String callType, LocalDateTime startTime, LocalDateTime endTime, String duration, BigDecimal cost, ReportEntity report) {
         this.callType = callType;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
         this.cost = cost;
-        this.client = client;
+        this.report = report;
     }
 }

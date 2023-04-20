@@ -2,9 +2,11 @@ package ru.nexign.brt.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.dao.CallRepository;
 import ru.nexign.brt.dao.ClientRepository;
+import ru.nexign.brt.dao.ReportRepository;
 import ru.nexign.brt.dao.TariffRepository;
 import ru.nexign.brt.exception.BrtException;
 import ru.nexign.brt.exception.ClientNotFoundException;
@@ -12,6 +14,7 @@ import ru.nexign.brt.exception.TariffNotFoundException;
 import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.dto.Mapper;
+import ru.nexign.jpa.entity.ReportEntity;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.body.DepositResponseBody;
@@ -23,17 +26,22 @@ import java.util.List;
 @Service
 @Slf4j
 public class ClientService {
-    private final int PHONE_NUMBER_LENGTH = 11;
+    @Value("${const.monetary.unit}")
+    private String monetaryUnit;
+    @Value("${const.phone.number.length}")
+    private int phoneNumberLength;
     private final ClientRepository clientRepository;
     private final TariffRepository tariffRepository;
     private final CallRepository callRepository;
+    private final ReportRepository reportRepository;
     private final Mapper mapper;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, CallRepository callRepository, Mapper mapper) {
+    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, CallRepository callRepository, ReportRepository reportRepository, Mapper mapper) {
         this.clientRepository = clientRepository;
         this.tariffRepository = tariffRepository;
         this.callRepository = callRepository;
+        this.reportRepository = reportRepository;
         this.mapper = mapper;
     }
 
@@ -49,7 +57,7 @@ public class ClientService {
     }
 
     public ClientDto getByPhoneNumber(String phoneNumber) {
-        if (phoneNumber == null || phoneNumber.length() != PHONE_NUMBER_LENGTH) {
+        if (phoneNumber == null || phoneNumber.length() != phoneNumberLength) {
             throw new BrtException("Incorrect phone number.");
         }
         var client = clientRepository.findByPhoneNumber(phoneNumber);
@@ -87,15 +95,16 @@ public class ClientService {
         return mapper.toDto(client);
     }
 
-    public void AddClientCalls(String phoneNumber, List<CallDto> calls) {
-        if (phoneNumber == null || phoneNumber.length() != PHONE_NUMBER_LENGTH) {
+    public void AddReport(String phoneNumber, List<CallDto> calls, BigDecimal price) {
+        if (phoneNumber == null || phoneNumber.length() != phoneNumberLength) {
             throw new BrtException("Incorrect phone number.");
         }
         var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-        calls.forEach(call -> callRepository.save(mapper.toEntity(call, client)));
-        log.info("{}", callRepository.findAll());
+        var report = new ReportEntity(price, monetaryUnit, client);
+        report.setCalls(mapper.toEntity(calls, report));
+        reportRepository.save(report);
         clientRepository.save(client);
     }
 }

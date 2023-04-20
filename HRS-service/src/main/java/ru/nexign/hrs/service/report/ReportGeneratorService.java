@@ -44,7 +44,6 @@ public class ReportGeneratorService {
            }
 
            ClientReport fullReport = tarifficationService.tarifficate(cdr, report);
-           log.info("{}", fullReport.getPrice());
            response.getClientReports().add(fullReport);
        }
 

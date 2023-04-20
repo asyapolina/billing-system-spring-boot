@@ -16,19 +16,19 @@ public class RegularTariffService implements TarifficationService {
         long durationInMinutes = (long) Math.ceil(callDuration.getSeconds() / 60.0);
         long totalTime = totalSpentMinutes + durationInMinutes;
 
-        if (callType.equals(CallType.INCOMING.name())) {
+        if (callType.equals("02")) {
             return BigDecimal.ZERO;
         }
-        if (callType.equals(CallType.OUTGOING.name())) {
+        if (callType.equals("01")) {
             long extraTime = totalTime - tariff.getFirstMinuteLimit();
 
             if (extraTime <= 0) {
                 return tariff.getFirstMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes));
             } else {
                 if (extraTime >= durationInMinutes) {
-                    return tariff.getFirstMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes));
+                    return tariff.getNextMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes));
                 } else {
-                    return tariff.getFirstMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes))
+                    return tariff.getFirstMinutePrice().multiply(BigDecimal.valueOf(durationInMinutes - extraTime))
                             .add(tariff.getNextMinutePrice().multiply(BigDecimal.valueOf(extraTime)));
                 }
             }

@@ -3,7 +3,6 @@ package ru.nexign.jpa.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,10 +10,10 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDto implements Serializable {
-    private String phoneNumber;
-    private BigDecimal balance;
-    private String tariffId;
+public class ReportDto implements Serializable {
+    private BigDecimal totalCost;
 
-    private List<ReportDto> reports;
+    private String monetaryUnit;
+
+    private List<CallDto> calls;
 }

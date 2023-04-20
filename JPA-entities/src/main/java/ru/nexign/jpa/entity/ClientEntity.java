@@ -34,12 +34,12 @@ public class ClientEntity {
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
-    private List<CallEntity> calls;
+    private List<ReportEntity> reports;
 
-    public ClientEntity(String phoneNumber, BigDecimal balance, TariffEntity tariff, List<CallEntity> calls) {
+    public ClientEntity(String phoneNumber, BigDecimal balance, TariffEntity tariff, List<ReportEntity> reports) {
         this.phoneNumber = phoneNumber;
         this.balance = balance;
         this.tariff = tariff;
-        this.calls = calls;
+        this.reports = reports;
     }
 }

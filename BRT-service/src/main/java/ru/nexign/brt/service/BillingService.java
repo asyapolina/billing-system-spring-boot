@@ -23,7 +23,7 @@ public class BillingService {
 
         for (var report: reports) {
             ClientDto client = clientService.withdrawMoney(report.getPhoneNumber(), report.getPrice());
-            clientService.AddClientCalls(report.getPhoneNumber(), report.getCalls());
+            clientService.AddReport(report.getPhoneNumber(), report.getCalls(), report.getPrice());
 
             response.getNumbers().add(new PhoneNumberBalance(client.getPhoneNumber(), client.getBalance()));
         }

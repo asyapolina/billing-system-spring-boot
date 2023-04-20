@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import ru.nexign.cdr.service.CdrService;
+import ru.nexign.cdr.service.ClientsService;
 
 import java.io.IOException;
 
@@ -17,8 +18,8 @@ public class CdrServiceApplication {
         ApplicationContext context = SpringApplication.run(CdrServiceApplication.class, args);
 
         final CdrService cdr = context.getBean(CdrService.class);
-        //cdr.generateCdrFile(1, 2001);
-        //cdr.sendCdrData("cdr/cdr.txt", 4, 2001);
+//        final ClientsService controller = context.getBean(ClientsService.class);
+//		controller.generateClients();
     }
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.activemq.MessageProducer;
 import ru.nexign.brt.authorization.ClientAuthorization;
@@ -14,18 +15,31 @@ import ru.nexign.jpa.model.CdrList;
 import ru.nexign.jpa.model.ReportList;
 import ru.nexign.jpa.response.Response;
 
+import javax.annotation.PostConstruct;
+
 @Service
 @Slf4j
 public class TarifficationService {
+    @Value("${const.first.month}")
+    private int firstMonth;
+    @Value("${const.first.year}")
+    private int firstYear;
     private final MessageProducer producer;
     private final BillingService billingService;
     private final ClientAuthorization clientAuthorization;
+    private final CallService callService;
 
     @Autowired
-    public TarifficationService(MessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization) {
+    public TarifficationService(MessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CallService callService) {
         this.producer = producer;
         this.billingService = billingService;
         this.clientAuthorization = clientAuthorization;
+        this.callService = callService;
+    }
+
+    @PostConstruct
+    public void firstTarifficationCall() {
+        runTariffication(new CdrPeriod(firstMonth, firstYear));
     }
 
     public Response runTariffication(CdrPeriod cdrPeriod) {
