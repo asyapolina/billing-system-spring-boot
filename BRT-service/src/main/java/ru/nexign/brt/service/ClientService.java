@@ -18,6 +18,7 @@ import ru.nexign.jpa.entity.ReportEntity;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.body.DepositResponseBody;
+import ru.nexign.jpa.response.body.ReportResponseBody;
 import ru.nexign.jpa.response.body.TariffResponseBody;
 
 import java.math.BigDecimal;
@@ -106,5 +107,27 @@ public class ClientService {
         report.setCalls(mapper.toEntity(calls, report));
         reportRepository.save(report);
         clientRepository.save(client);
+    }
+
+    public ReportResponseBody getLastReport(String phoneNumber) {
+        var client  = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
+                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
+
+        List<ReportEntity> reports = client.getReports();
+        ReportEntity report;
+        if (!reports.isEmpty()) {
+            report = reports.get(reports.size() - 1);
+
+            return new ReportResponseBody(report.getId(),
+                    phoneNumber,
+                    client.getTariff().getId(),
+                    report.getCalls(),
+                    report.getTotalCost(),
+                    report.getMonetaryUnit());
+
+        } else {
+            throw new BrtException("Client doesn't have any reports.");
+        }
+
     }
 }

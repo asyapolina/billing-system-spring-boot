@@ -1,6 +1,7 @@
 package ru.nexign.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

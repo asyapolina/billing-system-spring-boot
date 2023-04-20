@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="add: call report saving in db">
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="refactor: ObjectMapper as a class property">
       <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/AuthProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TarifficationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/CallRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/CallRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/ReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/dao/ReportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/CallEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/entity/CallEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/body/ReportResponseBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/response/body/ReportResponseBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdr/cdr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cdr/cdr.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +188,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="70095000" />
+      <workItem from="1681717957873" duration="75123000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -353,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681986342680</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="refactor: ObjectMapper as a class property">
+      <created>1681986788773</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1681986788773</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,7 +390,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: call entity" />
     <MESSAGE value="feat: cdr data sending" />
     <MESSAGE value="feat: client generator" />
     <MESSAGE value="add: dependencies" />
@@ -396,7 +414,8 @@
     <MESSAGE value="refactor: user understdable responses" />
     <MESSAGE value="refactor: client and cdr generators" />
     <MESSAGE value="add: call report saving in db" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: call report saving in db" />
+    <MESSAGE value="refactor: ObjectMapper as a class property" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: ObjectMapper as a class property" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

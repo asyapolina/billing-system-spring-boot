@@ -64,4 +64,17 @@ public class CrudMessageConsumer {
             return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
         }
     }
+
+    @JmsListener(destination = "${client.report.mq}")
+    public Response receivePhoneNumber(@Payload Request request) {
+        log.info("Request received: {}", request.getMessage());
+
+        try {
+            var response = clientService.getLastReport(request.getMessage());
+
+            return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
+        } catch (JsonProcessingException | RuntimeException e) {
+            return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
+        }
+    }
 }

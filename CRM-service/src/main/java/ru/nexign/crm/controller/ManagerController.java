@@ -2,6 +2,7 @@ package ru.nexign.crm.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ import ru.nexign.jpa.response.body.TarifficationResponseBody;
 @Slf4j
 public class ManagerController {
     private final MessageProducer sender;
+    private final ObjectMapper mapper;
 
     @Autowired
     public ManagerController(MessageProducer sender) {
         this.sender = sender;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @PatchMapping(path = "/changeTariff")
@@ -59,7 +62,7 @@ public class ManagerController {
 
     @PatchMapping(path = "/billing")
     public ResponseEntity<?> startTariffication(@RequestBody String request) {
-        var response = sender.send(request);
+        var response = sender.sendTariffication(request);
         ObjectMapper mapper = new ObjectMapper();
 
         if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
