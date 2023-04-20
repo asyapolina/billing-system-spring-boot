@@ -1,4 +1,4 @@
-package ru.nexign.brt.service;
+package ru.nexign.brt.service.tariffication;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.activemq.MessageProducer;
 import ru.nexign.brt.authorization.ClientAuthorization;
+import ru.nexign.brt.service.CallService;
 import ru.nexign.jpa.enums.ResponseStatus;
 import ru.nexign.jpa.model.CdrPeriod;
 import ru.nexign.jpa.model.CdrList;

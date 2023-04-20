@@ -1,7 +1,6 @@
 package ru.nexign.cdr.parser;
 
 import org.springframework.stereotype.Component;
-import ru.nexign.jpa.enums.CallType;
 import ru.nexign.jpa.model.CallDataRecord;
 
 import java.io.*;
@@ -18,7 +17,7 @@ public class CdrParser {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String line;
 
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
             inputStream = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {

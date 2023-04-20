@@ -26,19 +26,16 @@ public class ClientAuthorization {
     public List<CallDataRecord> authorizeClientsFromCdr(List<CallDataRecord> cdrList) {
         List<CallDataRecord> filteredCdrList = new ArrayList<>();
 
-        for (CallDataRecord cdr : cdrList) {
-            if (cdr.getPhoneNumber() != null) {
-                ClientDto client = clientService.getByPhoneNumber(cdr.getPhoneNumber());
-                if (client != null) {
-                    TariffEntity tariff = tariffService.getTariff(client.getTariffId());
-                    if (client.getBalance().doubleValue() > 0.0 && tariff != null) {
-                        cdr.setTariff(tariff);
-                        filteredCdrList.add(cdr);
-                    }
+        cdrList.stream().filter(cdr -> cdr.getPhoneNumber() != null).forEach(cdr -> {
+            ClientDto client = clientService.getByPhoneNumber(cdr.getPhoneNumber());
+            if (client != null) {
+                TariffEntity tariff = tariffService.getTariff(client.getTariffId());
+                if (client.getBalance().doubleValue() > 0.0 && tariff != null) {
+                    cdr.setTariff(tariff);
+                    filteredCdrList.add(cdr);
                 }
-
             }
-        }
+        });
         return filteredCdrList;
     }
 }

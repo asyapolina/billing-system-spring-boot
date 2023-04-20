@@ -1,15 +1,12 @@
 package ru.nexign.brt.activemq;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.service.*;
-import ru.nexign.jpa.enums.ResponseStatus;
+import ru.nexign.brt.service.tariffication.TarifficationService;
 import ru.nexign.jpa.model.CdrPeriod;
 import ru.nexign.jpa.request.Request;
 import ru.nexign.jpa.response.Response;

@@ -3,6 +3,8 @@ package ru.nexign.brt.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.dao.CallRepository;
 import ru.nexign.brt.dao.ClientRepository;
@@ -14,11 +16,9 @@ import ru.nexign.brt.exception.TariffNotFoundException;
 import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.dto.Mapper;
-import ru.nexign.jpa.entity.ReportEntity;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.body.DepositResponseBody;
-import ru.nexign.jpa.response.body.ReportResponseBody;
 import ru.nexign.jpa.response.body.TariffResponseBody;
 
 import java.math.BigDecimal;
@@ -27,22 +27,16 @@ import java.util.List;
 @Service
 @Slf4j
 public class ClientService {
-    @Value("${const.monetary.unit}")
-    private String monetaryUnit;
     @Value("${const.phone.number.length}")
     private int phoneNumberLength;
     private final ClientRepository clientRepository;
     private final TariffRepository tariffRepository;
-    private final CallRepository callRepository;
-    private final ReportRepository reportRepository;
     private final Mapper mapper;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, CallRepository callRepository, ReportRepository reportRepository, Mapper mapper) {
+    public ClientService(ClientRepository clientRepository, TariffRepository tariffRepository, Mapper mapper) {
         this.clientRepository = clientRepository;
         this.tariffRepository = tariffRepository;
-        this.callRepository = callRepository;
-        this.reportRepository = reportRepository;
         this.mapper = mapper;
     }
 
@@ -57,6 +51,7 @@ public class ClientService {
         return clientDto;
     }
 
+    @Cacheable("clients")
     public ClientDto getByPhoneNumber(String phoneNumber) {
         if (phoneNumber == null || phoneNumber.length() != phoneNumberLength) {
             throw new BrtException("Incorrect phone number.");
@@ -65,6 +60,7 @@ public class ClientService {
         return client.map(mapper::toDto).orElse(null);
     }
 
+    @CachePut(value = "clients", key = "#request.phoneNumber")
     public TariffResponseBody changeTariff(TariffRequestBody request) {
         var client = clientRepository.findByPhoneNumber(request.getPhoneNumber()).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + request.getPhoneNumber() + " doesn't exist."));
@@ -76,6 +72,7 @@ public class ClientService {
         return new TariffResponseBody(client.getId(), client.getPhoneNumber(), tariff.getId());
     }
 
+    @CachePut(value = "clients", key = "#request.phoneNumber")
     public DepositResponseBody depositMoney(DepositRequestBody request) {
         var client = clientRepository.findByPhoneNumber(request.getPhoneNumber()).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + request.getPhoneNumber() + " doesn't exist."));
@@ -85,6 +82,7 @@ public class ClientService {
         return new DepositResponseBody(client.getId(), client.getPhoneNumber(), client.getBalance());
     }
 
+    @CachePut(value = "clients", key = "#phoneNumber")
     public ClientDto withdrawMoney(String phoneNumber, BigDecimal money) {
         var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
                 () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
@@ -94,40 +92,5 @@ public class ClientService {
         }
         clientRepository.save(client);
         return mapper.toDto(client);
-    }
-
-    public void AddReport(String phoneNumber, List<CallDto> calls, BigDecimal price) {
-        if (phoneNumber == null || phoneNumber.length() != phoneNumberLength) {
-            throw new BrtException("Incorrect phone number.");
-        }
-        var client = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
-                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
-
-        var report = new ReportEntity(price, monetaryUnit, client);
-        report.setCalls(mapper.toEntity(calls, report));
-        reportRepository.save(report);
-        clientRepository.save(client);
-    }
-
-    public ReportResponseBody getLastReport(String phoneNumber) {
-        var client  = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
-                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
-
-        List<ReportEntity> reports = client.getReports();
-        ReportEntity report;
-        if (!reports.isEmpty()) {
-            report = reports.get(reports.size() - 1);
-
-            return new ReportResponseBody(report.getId(),
-                    phoneNumber,
-                    client.getTariff().getId(),
-                    report.getCalls(),
-                    report.getTotalCost(),
-                    report.getMonetaryUnit());
-
-        } else {
-            throw new BrtException("Client doesn't have any reports.");
-        }
-
     }
 }
