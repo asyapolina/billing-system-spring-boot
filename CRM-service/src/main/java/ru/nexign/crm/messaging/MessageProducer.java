@@ -29,6 +29,7 @@ public class MessageProducer {
     private final String tariffMq;
     private final String clientMq;
     private final String tarifficationMq;
+    private final ObjectMapper mapper;
 
     @Autowired
     public MessageProducer(JmsMessagingTemplate jmsTemplate,
@@ -41,25 +42,23 @@ public class MessageProducer {
         this.tariffMq = tariffMq;
         this.clientMq = clientMq;
         this.tarifficationMq = tarifficationMq;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @SneakyThrows
     public Response send(DepositRequestBody body) {
-        ObjectMapper mapper = new ObjectMapper();
         var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(depositMq, request, Response.class);
     }
 
     @SneakyThrows
     public Response send(TariffRequestBody body) {
-        ObjectMapper mapper = new ObjectMapper();
         var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(tariffMq, request, Response.class);
     }
 
     @SneakyThrows
     public Response send(ClientDto body) {
-        ObjectMapper mapper = new ObjectMapper();
         var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(clientMq, request, Response.class);
     }

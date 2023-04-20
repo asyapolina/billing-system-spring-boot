@@ -30,8 +30,6 @@ public class TarifficationMessageConsumer {
     @JmsListener(destination = "${tariffication.mq}")
     public Response receiveTarifficationRequest(@Payload Request request) {
         log.info("Request received: {}", request.getMessage());
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
 
         var month = callService.getLastCallMonth();
         var year = callService.getLastCallYear();

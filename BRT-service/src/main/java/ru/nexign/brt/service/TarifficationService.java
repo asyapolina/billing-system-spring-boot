@@ -47,7 +47,7 @@ public class TarifficationService {
         mapper.registerModule(new JavaTimeModule());
 
         var response = producer.send(cdrPeriod);
-        CdrList cdrList = null;
+        CdrList cdrList;
         try {
             cdrList = mapper.readValue(response.getMessage(), CdrList.class);
         } catch (JsonProcessingException e) {
@@ -63,7 +63,7 @@ public class TarifficationService {
 
         var reportResponse = producer.send(authorized);
 
-        ReportList reportList = null;
+        ReportList reportList;
         try {
             reportList = mapper.readValue(reportResponse.getMessage(), ReportList.class);
         } catch (JsonProcessingException e) {

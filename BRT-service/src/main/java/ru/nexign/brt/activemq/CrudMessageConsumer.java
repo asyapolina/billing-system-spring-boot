@@ -20,17 +20,17 @@ import ru.nexign.jpa.response.Response;
 @Slf4j
 public class CrudMessageConsumer {
     private final ClientService clientService;
+    private final ObjectMapper mapper;
 
     @Autowired
     public CrudMessageConsumer(ClientService clientService) {
-
         this.clientService = clientService;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @JmsListener(destination = "${deposit.mq}")
     public Response receiveDepositRequest(@Payload Request request) {
         log.info("Request received: {}", request.getMessage());
-        ObjectMapper mapper = new ObjectMapper();
 
         try {
             var response = clientService.depositMoney(mapper.readValue(request.getMessage(), DepositRequestBody.class));
@@ -43,7 +43,6 @@ public class CrudMessageConsumer {
     @JmsListener(destination = "${tariff.mq}")
     public Response receiveTariffRequest(@Payload Request request) {
         log.info("Request received: {}", request.getMessage());
-        ObjectMapper mapper = new ObjectMapper();
 
         try {
             var response = clientService.changeTariff(mapper.readValue(request.getMessage(), TariffRequestBody.class));
@@ -56,8 +55,6 @@ public class CrudMessageConsumer {
     @JmsListener(destination = "${client.mq}")
     public Response receiveClientDto(@Payload Request request) {
         log.info("Request received: {}", request.getMessage());
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
 
         try {
             var response = clientService.createClient(mapper.readValue(request.getMessage(), ClientDto.class));

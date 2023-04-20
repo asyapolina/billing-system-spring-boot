@@ -22,18 +22,18 @@ public class MessageConsumer {
     @Value("${const.filepath}")
     private String filepath;
     private final CdrService service;
+    private final ObjectMapper mapper;
 
     @Autowired
     public MessageConsumer(CdrService service) {
         this.service = service;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @JmsListener(destination = "${cdr.mq}")
     public Response receiveRequest(@Payload Request request) {
         log.info("Cdr received: {}", request.getMessage());
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
         try {
             var cdrRequest = mapper.readValue(request.getMessage(), CdrPeriod.class);
             var response = service.sendCdrData(filepath, cdrRequest.getMonth(), cdrRequest.getYear());

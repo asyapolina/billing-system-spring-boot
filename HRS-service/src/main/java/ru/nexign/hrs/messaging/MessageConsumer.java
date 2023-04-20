@@ -18,17 +18,17 @@ import ru.nexign.jpa.response.Response;
 @Slf4j
 public class MessageConsumer {
     private final ReportGeneratorService service;
+    private final ObjectMapper mapper;
 
     @Autowired
     public MessageConsumer(ReportGeneratorService service) {
         this.service = service;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @JmsListener(destination = "${report.mq}")
     public Response receiveTarifficationRequest(@Payload Request request) {
         log.info("Request received: {}", request.getMessage());
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
 
         try {
             var tarifficationRequest = mapper.readValue(request.getMessage(), CdrList.class);
