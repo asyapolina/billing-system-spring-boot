@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,8 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class MessageConsumer {
-    public static final String FILE_PATH = "cdr/cdr.txt";
+    @Value("${const.filepath}")
+    private String filepath;
     private final CdrService service;
 
     @Autowired
@@ -34,7 +36,7 @@ public class MessageConsumer {
         mapper.registerModule(new JavaTimeModule());
         try {
             var cdrRequest = mapper.readValue(request.getMessage(), CdrPeriod.class);
-            var response = service.sendCdrData(FILE_PATH, cdrRequest.getMonth(), cdrRequest.getYear());
+            var response = service.sendCdrData(filepath, cdrRequest.getMonth(), cdrRequest.getYear());
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
         } catch (IOException e) {
             return new Response("Cdr service: " + e.getMessage(), ResponseStatus.ERROR);

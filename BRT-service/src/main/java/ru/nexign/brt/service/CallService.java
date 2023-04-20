@@ -5,6 +5,7 @@ import ru.nexign.brt.dao.CallRepository;
 import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.Mapper;
 
+import java.time.Month;
 import java.util.List;
 
 @Service
@@ -23,14 +24,19 @@ public class CallService {
         CallDto call = getLastCall();
 
         if (call == null) return FIRST_MONTH;
-        return call.getEndTime().getMonth().getValue();
+        return call.getEndTime().getMonth().plus(1).getValue();
     }
 
     public int getLastCallYear() {
         CallDto call = getLastCall();
 
         if (call == null) return FIRST_YEAR;
-        return call.getEndTime().getYear();
+        if (call.getEndTime().getMonth() == Month.DECEMBER) {
+            return call.getEndTime().getYear() + 1;
+        } else {
+            return call.getEndTime().getYear();
+        }
+
     }
 
     private CallDto getLastCall() {

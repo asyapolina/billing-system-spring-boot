@@ -1,7 +1,10 @@
-package ru.nexign.cdr.generator;
+package ru.nexign.cdr.generator.cdr;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.nexign.cdr.generator.PhoneNumberGenerator;
+import ru.nexign.cdr.generator.cdr.CallTimeGenerator;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -15,11 +18,17 @@ import java.util.Random;
 @Component
 @Slf4j
 public class CdrGenerator {
+    @Value("${const.cdr.amount}")
+    private int amount;
+
+    @Value("${const.filepath}")
+    private String filePath;
+
     public void generateCdrFile(int month, int year) throws IOException {
         List<String> cdrList = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < amount; i++) {
             // Генерация типа вызова (01 - исходящий, 02 - входящий)
             String callType = random.nextInt(2) == 0 ? "01" : "02";
 
@@ -33,10 +42,9 @@ public class CdrGenerator {
             cdrList.add(cdr);
         }
 
-
-        String fileName = "cdr.txt"; // Имя файла
-        Path filePath = Paths.get("cdr/", fileName);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()))) {
+        String[] fields = filePath.split("/");
+        Path path = Paths.get(fields[0], fields[1]);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
             for (String cdr : cdrList) {
                 writer.write(cdr);
                 writer.newLine();
