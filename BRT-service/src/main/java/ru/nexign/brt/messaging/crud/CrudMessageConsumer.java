@@ -1,4 +1,4 @@
-package ru.nexign.brt.activemq;
+package ru.nexign.brt.messaging.crud;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

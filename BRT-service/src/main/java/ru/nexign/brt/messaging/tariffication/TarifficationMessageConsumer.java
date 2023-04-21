@@ -1,4 +1,4 @@
-package ru.nexign.brt.activemq;
+package ru.nexign.brt.messaging.tariffication;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

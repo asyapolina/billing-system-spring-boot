@@ -4,27 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="add: get client report endpoint">
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/AuthProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/user/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_commons_1_10_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_observation_1_10_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_6_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_7_7.xml" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: Spring Cache in services">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_commons_1_10_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_observation_1_10_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_7_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_6_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/PasswordEncoderConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/exception/UserAlreadyExistException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/exception/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/user/AuthDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/user/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/user/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/user/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dae43c01-c9da-425b-8c85-430597140cf0/storage_v2/_src_/database/nexign_project_db.1BPbeg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/BrtServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/BrtServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/BillingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/BillingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TariffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TariffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/crud/CrudMessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/activemq/TarifficationMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/CrmServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/CrmServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dto/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdr/cdr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cdr/cdr.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +86,7 @@
     "WebServerToolWindowFactoryState": "false",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/Users/annemariarepenko/IdeaProjects/BillingSystem",
+    "last_opened_file_path": "/Users/annemariarepenko/IdeaProjects/BillingSystem/JPA-entities/src/main/java/ru/nexign/jpa/dao",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,15 +107,20 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/user" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.nexign.crm.security" />
       <recent name="ru.nexign.cdr.service" />
       <recent name="ru.nexign.cdr" />
       <recent name="ru.nexign.brt.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.HrsServiceApplication">
+  <component name="RunManager" selected="Spring Boot.BrtServiceApplication">
     <configuration name="BrtServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="BRT-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.nexign.brt.BrtServiceApplication" />
@@ -191,7 +211,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="82546000" />
+      <workItem from="1681717957873" duration="107373000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -382,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681994216640</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="feat: Spring Cache in services">
+      <created>1682013071591</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1682013071591</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +427,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: client generator" />
     <MESSAGE value="add: dependencies" />
     <MESSAGE value="add: entity dto" />
     <MESSAGE value="add: requests and responses" />
@@ -425,7 +451,8 @@
     <MESSAGE value="add: call report saving in db" />
     <MESSAGE value="refactor: ObjectMapper as a class property" />
     <MESSAGE value="add: get client report endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: get client report endpoint" />
+    <MESSAGE value="feat: Spring Cache in services" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Spring Cache in services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

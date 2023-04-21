@@ -5,6 +5,9 @@ import ru.nexign.jpa.entity.CallEntity;
 import ru.nexign.jpa.entity.ClientEntity;
 import ru.nexign.jpa.entity.ReportEntity;
 import ru.nexign.jpa.entity.TariffEntity;
+import ru.nexign.jpa.user.UserDto;
+import ru.nexign.jpa.user.UserEntity;
+import ru.nexign.jpa.user.UserRole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +49,13 @@ public class Mapper {
 
     public List<ReportDto> toDto(List<ReportEntity> entities) {
         return entities.stream().map(this::toDto).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public UserEntity toEntity(UserDto dto) {
+        return new UserEntity(dto.getUsername(), dto.getPhoneNumber(), dto.getPassword(), UserRole.ROLE_ABONENT.toString());
+    }
+
+    public UserDto toDto(UserEntity entity) {
+        return new UserDto(entity.getUsername(), entity.getPhoneNumber(), entity.getPassword());
     }
 }

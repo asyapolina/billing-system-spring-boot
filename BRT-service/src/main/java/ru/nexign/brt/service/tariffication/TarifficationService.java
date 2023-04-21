@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.nexign.brt.activemq.MessageProducer;
+import ru.nexign.brt.messaging.tariffication.TarifficationMessageProducer;
 import ru.nexign.brt.authorization.ClientAuthorization;
 import ru.nexign.brt.service.CallService;
 import ru.nexign.jpa.enums.ResponseStatus;
@@ -25,13 +25,13 @@ public class TarifficationService {
     private int firstMonth;
     @Value("${const.first.year}")
     private int firstYear;
-    private final MessageProducer producer;
+    private final TarifficationMessageProducer producer;
     private final BillingService billingService;
     private final ClientAuthorization clientAuthorization;
     private final CallService callService;
 
     @Autowired
-    public TarifficationService(MessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CallService callService) {
+    public TarifficationService(TarifficationMessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CallService callService) {
         this.producer = producer;
         this.billingService = billingService;
         this.clientAuthorization = clientAuthorization;

@@ -1,4 +1,4 @@
-package ru.nexign.brt.activemq;
+package ru.nexign.brt.messaging.tariffication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -15,16 +15,16 @@ import ru.nexign.jpa.response.Response;
 
 @Component
 @Slf4j
-public class MessageProducer {
+public class TarifficationMessageProducer {
     private final JmsMessagingTemplate jmsTemplate;
     private final String cdrMq;
     private final String reportMq;
     private final ObjectMapper mapper;
 
     @Autowired
-    public MessageProducer(JmsMessagingTemplate jmsTemplate,
-                           @Value("${cdr.mq}") String cdrMq,
-                           @Value("${report.mq}") String reportMq) {
+    public TarifficationMessageProducer(JmsMessagingTemplate jmsTemplate,
+                                        @Value("${cdr.mq}") String cdrMq,
+                                        @Value("${report.mq}") String reportMq) {
         this.jmsTemplate = jmsTemplate;
         this.cdrMq = cdrMq;
         this.reportMq = reportMq;
