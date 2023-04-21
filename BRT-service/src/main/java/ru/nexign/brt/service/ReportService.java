@@ -8,6 +8,8 @@ import ru.nexign.brt.dao.ClientRepository;
 import ru.nexign.brt.dao.ReportRepository;
 import ru.nexign.brt.exception.BrtException;
 import ru.nexign.brt.exception.ClientNotFoundException;
+import ru.nexign.brt.exception.UserHasNoAccessException;
+import ru.nexign.jpa.dao.UserRepository;
 import ru.nexign.jpa.dto.CallDto;
 import ru.nexign.jpa.dto.Mapper;
 import ru.nexign.jpa.entity.ReportEntity;
@@ -24,11 +26,13 @@ public class ReportService {
     private String monetaryUnit;
     private final ReportRepository reportRepository;
     private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
     private final Mapper mapper;
 
-    public ReportService(ReportRepository reportRepository, ClientRepository clientRepository, Mapper mapper) {
+    public ReportService(ReportRepository reportRepository, ClientRepository clientRepository, UserRepository userRepository, Mapper mapper) {
         this.reportRepository = reportRepository;
         this.clientRepository = clientRepository;
+        this.userRepository = userRepository;
         this.mapper = mapper;
     }
 
@@ -47,25 +51,32 @@ public class ReportService {
     }
 
     @Cacheable("clientReports")
-    public ReportResponseBody getLastReport(String phoneNumber) {
-        var client  = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
-                () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
+    public ReportResponseBody getLastReport(String phoneNumber, String username) {
+        var user = userRepository.findByUsername(username);
 
-        List<ReportEntity> reports = client.getReports();
-        ReportEntity report;
-        if (!reports.isEmpty()) {
-            report = reports.get(reports.size() - 1);
+        if (user.getPhoneNumber().equals(phoneNumber)) {
+            var client  = clientRepository.findByPhoneNumber(phoneNumber).orElseThrow(
+                    () -> new ClientNotFoundException("Client with phone number " + phoneNumber + " doesn't exist."));
 
-            return new ReportResponseBody(report.getId(),
-                    phoneNumber,
-                    client.getTariff().getId(),
-                    report.getCalls(),
-                    report.getTotalCost(),
-                    report.getMonetaryUnit());
+            List<ReportEntity> reports = client.getReports();
+            ReportEntity report;
+            if (!reports.isEmpty()) {
+                report = reports.get(reports.size() - 1);
 
+                return new ReportResponseBody(report.getId(),
+                        phoneNumber,
+                        client.getTariff().getId(),
+                        report.getCalls(),
+                        report.getTotalCost(),
+                        report.getMonetaryUnit());
+
+            } else {
+                throw new BrtException("Client doesn't have any reports.");
+            }
         } else {
-            throw new BrtException("Client doesn't have any reports.");
+            throw new UserHasNoAccessException("You don't have access to a foreign phone number.");
         }
+
 
     }
 }

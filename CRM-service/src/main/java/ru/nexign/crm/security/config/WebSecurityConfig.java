@@ -19,12 +19,15 @@ import ru.nexign.crm.security.service.UserDetailsServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsServiceImpl userService;
-    @Autowired
-    public PasswordEncoder passwordEncoder;
-    @Autowired
-    private JwtFilter jwtFilter;
+    private final UserDetailsServiceImpl userService;
+    public final PasswordEncoder passwordEncoder;
+    private final JwtFilter jwtFilter;
+
+    public WebSecurityConfig(UserDetailsServiceImpl userService, PasswordEncoder passwordEncoder, JwtFilter jwtFilter) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtFilter = jwtFilter;
+    }
 
     @SneakyThrows
     @Override

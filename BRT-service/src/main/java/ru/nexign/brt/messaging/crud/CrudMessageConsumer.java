@@ -13,6 +13,7 @@ import ru.nexign.brt.service.ReportService;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.enums.ResponseStatus;
 import ru.nexign.jpa.request.Request;
+import ru.nexign.jpa.request.UsernameRequest;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.Response;
@@ -69,11 +70,11 @@ public class CrudMessageConsumer {
     }
 
     @JmsListener(destination = "${client.report.mq}")
-    public Response receivePhoneNumber(@Payload Request request) {
+    public Response receivePhoneNumber(@Payload UsernameRequest request) {
         log.info("Request received: {}", request.getMessage());
 
         try {
-            var response = reportService.getLastReport(request.getMessage());
+            var response = reportService.getLastReport(request.getMessage(), request.getUsername());
 
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
         } catch (JsonProcessingException | RuntimeException e) {

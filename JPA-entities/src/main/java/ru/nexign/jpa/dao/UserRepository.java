@@ -1,5 +1,5 @@
 
-package ru.nexign.crm.security.repository;
+package ru.nexign.jpa.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,8 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    Optional<UserEntity> findByUsername(String username);
-    Optional<UserEntity> findByUsernameAndPassword(String username, String password);
-    Optional<UserEntity> findByPhoneNumber(String phoneNumber);
+    UserEntity findByUsername(String username);
 }
 

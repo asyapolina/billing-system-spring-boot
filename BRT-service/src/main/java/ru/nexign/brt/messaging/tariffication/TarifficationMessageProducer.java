@@ -17,17 +17,15 @@ import ru.nexign.jpa.response.Response;
 @Slf4j
 public class TarifficationMessageProducer {
     private final JmsMessagingTemplate jmsTemplate;
-    private final String cdrMq;
-    private final String reportMq;
+    @Value("${cdr.mq}")
+    private String cdrMq;
+    @Value("${report.mq}")
+    private String reportMq;
     private final ObjectMapper mapper;
 
     @Autowired
-    public TarifficationMessageProducer(JmsMessagingTemplate jmsTemplate,
-                                        @Value("${cdr.mq}") String cdrMq,
-                                        @Value("${report.mq}") String reportMq) {
+    public TarifficationMessageProducer(JmsMessagingTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
-        this.cdrMq = cdrMq;
-        this.reportMq = reportMq;
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 

@@ -22,11 +22,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userService = userService;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var userEntity = userService.findByUsername(username).orElseThrow(
-                () -> new UserNotFoundException("User with username: " + username + " doesn't exist."));
+        var userEntity = userService.findByUsername(username);
+        if (userEntity == null) {
+            throw new UserNotFoundException("User with username: " + username + " doesn't exist.");
+        }
+
 
         var authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(userEntity.getRole().toString()));

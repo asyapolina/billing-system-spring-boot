@@ -63,7 +63,7 @@ public class ManagerController {
 
     @PatchMapping(path = "/billing")
     public ResponseEntity<?> startTariffication(@RequestBody String request) {
-        var response = sender.sendTariffication(request);
+        var response = sender.send(request);
         ObjectMapper mapper = new ObjectMapper();
 
         if (response.getStatus().equals(ResponseStatus.SUCCESS)) {

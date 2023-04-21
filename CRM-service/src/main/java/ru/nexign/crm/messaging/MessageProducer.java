@@ -10,6 +10,7 @@ import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 import ru.nexign.jpa.dto.ClientDto;
 import ru.nexign.jpa.request.Request;
+import ru.nexign.jpa.request.UsernameRequest;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.Response;
@@ -18,26 +19,21 @@ import ru.nexign.jpa.response.Response;
 @Slf4j
 public class MessageProducer {
     private final JmsMessagingTemplate jmsTemplate;
-    private final String depositMq;
-    private final String tariffMq;
-    private final String clientMq;
-    private final String tarifficationMq;
-    private final String reportMq;
+    @Value("${deposit.mq}")
+    private String depositMq;
+    @Value("${tariff.mq}")
+    private String tariffMq;
+    @Value("${client.mq}")
+    private String clientMq;
+    @Value("${tariffication.mq}")
+    private String tarifficationMq;
+    @Value("${client.report.mq}")
+    private String reportMq;
     private final ObjectMapper mapper;
 
     @Autowired
-    public MessageProducer(JmsMessagingTemplate jmsTemplate,
-                           @Value("${deposit.mq}") String depositMq,
-                           @Value("${tariff.mq}") String tariffMq,
-                           @Value("${client.mq}") String clientMq,
-                           @Value("${tariffication.mq}") String tarifficationMq,
-                           @Value("${client.report.mq}") String reportMq) {
+    public MessageProducer(JmsMessagingTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
-        this.depositMq = depositMq;
-        this.tariffMq = tariffMq;
-        this.clientMq = clientMq;
-        this.tarifficationMq = tarifficationMq;
-        this.reportMq = reportMq;
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
@@ -60,14 +56,14 @@ public class MessageProducer {
     }
 
     @SneakyThrows
-    public Response sendTariffication(String body) {
+    public Response send(String body) {
         var request = new Request(body);
         return jmsTemplate.convertSendAndReceive(tarifficationMq, request, Response.class);
     }
 
     @SneakyThrows
-    public Response sendReport(String body) {
-        var request = new Request(body);
+    public Response send(String body, String username) {
+        var request = new UsernameRequest(body, username);
         return jmsTemplate.convertSendAndReceive(reportMq, request, Response.class);
     }
 }

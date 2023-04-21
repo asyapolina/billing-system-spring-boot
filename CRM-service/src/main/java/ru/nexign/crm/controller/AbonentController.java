@@ -14,6 +14,8 @@ import ru.nexign.jpa.response.body.DepositResponseBody;
 import ru.nexign.jpa.response.body.ReportResponseBody;
 import ru.nexign.jpa.response.body.TarifficationResponseBody;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping(path = "/abonent")
 @Slf4j
@@ -43,8 +45,8 @@ public class AbonentController {
     }
 
     @GetMapping(path = "/report/{phoneNumber}")
-    public ResponseEntity<?> getLastReport(@PathVariable String phoneNumber) {
-        var response = sender.sendReport(phoneNumber);
+    public ResponseEntity<?> getLastReport(@PathVariable String phoneNumber, Principal principal) {
+        var response = sender.send(phoneNumber, principal.getName());
 
         if (response.getStatus().equals(ResponseStatus.SUCCESS)) {
             try {

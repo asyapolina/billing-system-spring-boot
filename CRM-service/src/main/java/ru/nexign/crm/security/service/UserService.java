@@ -3,7 +3,7 @@ package ru.nexign.crm.security.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.nexign.crm.security.repository.UserRepository;
+import ru.nexign.jpa.dao.UserRepository;
 import ru.nexign.jpa.dto.Mapper;
 import ru.nexign.jpa.user.UserDto;
 import ru.nexign.jpa.user.UserEntity;
@@ -27,13 +27,20 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        var user = findByUsername("manager");
-
-        if (user.isEmpty()) {
+        var manager = findByUsername("manager");
+        if (manager == null) {
             userRepository.save(new UserEntity("manager",
                     "0",
                     encoder.encode("12345"),
                     UserRole.ROLE_MANAGER.toString()));
+        }
+
+        var abonent = findByUsername("abonent");
+        if (abonent == null) {
+            userRepository.save(new UserEntity("abonent",
+                    "79001221424",
+                    encoder.encode("abcde"),
+                    UserRole.ROLE_ABONENT.toString()));
         }
     }
 
@@ -44,15 +51,7 @@ public class UserService {
         userRepository.save(entity);
     }
 
-    public Optional<UserEntity> findByUsername(String username) {
+    public UserEntity findByUsername(String username) {
         return userRepository.findByUsername(username);
-    }
-
-    public Optional<UserEntity> findByPhoneNumber(String phoneNumber) {
-        return userRepository.findByPhoneNumber(phoneNumber);
-    }
-
-    public Optional<UserEntity> findByNameAndPassword(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
     }
 }
