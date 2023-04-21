@@ -3,24 +3,31 @@ package ru.nexign.brt.service.tariffication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.nexign.brt.messaging.tariffication.TarifficationMessageProducer;
-import ru.nexign.brt.authorization.ClientAuthorization;
-import ru.nexign.brt.service.CallService;
+import ru.nexign.brt.parser.CdrParser;
+import ru.nexign.brt.service.authorization.ClientAuthorization;
+import ru.nexign.jpa.entity.ClientEntity;
 import ru.nexign.jpa.enums.ResponseStatus;
+import ru.nexign.jpa.model.CallDataRecord;
 import ru.nexign.jpa.model.CdrPeriod;
 import ru.nexign.jpa.model.CdrList;
 import ru.nexign.jpa.model.ReportList;
 import ru.nexign.jpa.response.Response;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.util.List;
 
 @Service
 @Slf4j
 public class TarifficationService {
+    @Value("${const.filepath}")
+    private String filepath;
     @Value("${const.first.month}")
     private int firstMonth;
     @Value("${const.first.year}")
@@ -28,14 +35,16 @@ public class TarifficationService {
     private final TarifficationMessageProducer producer;
     private final BillingService billingService;
     private final ClientAuthorization clientAuthorization;
-    private final CallService callService;
+    private final CdrParser parser;
+    private final ObjectMapper mapper;
 
     @Autowired
-    public TarifficationService(TarifficationMessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CallService callService) {
+    public TarifficationService(TarifficationMessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CdrParser parser) {
         this.producer = producer;
         this.billingService = billingService;
         this.clientAuthorization = clientAuthorization;
-        this.callService = callService;
+        this.parser = parser;
+        this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @PostConstruct
@@ -44,32 +53,17 @@ public class TarifficationService {
     }
 
     public Response runTariffication(CdrPeriod cdrPeriod) {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-
         var response = producer.send(cdrPeriod);
-        CdrList cdrList;
-        try {
-            cdrList = mapper.readValue(response.getMessage(), CdrList.class);
-        } catch (JsonProcessingException e) {
-            return new Response(e.getMessage(), ResponseStatus.ERROR);
-        }
+        if (response.getStatus().equals(ResponseStatus.ERROR)) return response;
 
-        var authorizedClients = clientAuthorization.authorizeClientsFromCdr(cdrList.getCdrList());
+        List<CallDataRecord> cdrList = getCdrList();
 
+        var authorizedClients = clientAuthorization.authorizeClientsFromCdr(cdrList);
         if (authorizedClients.isEmpty()) {
-            new Response("There is no operator clients in call data record.", ResponseStatus.ERROR);
+            return new Response("There is no operator clients in call data record.", ResponseStatus.ERROR);
         }
-        var authorized = new CdrList(authorizedClients);
 
-        var reportResponse = producer.send(authorized);
-
-        ReportList reportList;
-        try {
-            reportList = mapper.readValue(reportResponse.getMessage(), ReportList.class);
-        } catch (JsonProcessingException e) {
-            return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
-        }
+        ReportList reportList = getReportList(authorizedClients);
         var tarifficationResponseBody = billingService.makeMonthCharge(reportList.getClientReports());
 
         if (tarifficationResponseBody == null) {
@@ -80,6 +74,25 @@ public class TarifficationService {
             } catch (JsonProcessingException e) {
                 return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
             }
+        }
+    }
+
+    private List<CallDataRecord> getCdrList() {
+        try {
+            return parser.parse(filepath);
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to parse cdr file.", e);
+        }
+    }
+
+    private ReportList getReportList(List<CallDataRecord> authorizedClients) {
+        var authorized = new CdrList(authorizedClients);
+        var reportResponse = producer.send(authorized);
+
+        try {
+            return mapper.readValue(reportResponse.getMessage(), ReportList.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Brt service: " + e.getMessage(), e);
         }
     }
 }

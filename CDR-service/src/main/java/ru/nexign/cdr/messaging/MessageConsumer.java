@@ -19,8 +19,6 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class MessageConsumer {
-    @Value("${const.filepath}")
-    private String filepath;
     private final CdrService service;
     private final ObjectMapper mapper;
 
@@ -36,8 +34,8 @@ public class MessageConsumer {
 
         try {
             var cdrRequest = mapper.readValue(request.getMessage(), CdrPeriod.class);
-            var response = service.sendCdrData(filepath, cdrRequest.getMonth(), cdrRequest.getYear());
-            return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
+            service.generateCdrFile(cdrRequest.getMonth(), cdrRequest.getYear());
+            return new Response("Cdr file is generated.", ResponseStatus.SUCCESS);
         } catch (IOException e) {
             return new Response("Cdr service: " + e.getMessage(), ResponseStatus.ERROR);
         }

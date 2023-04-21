@@ -1,4 +1,4 @@
-package ru.nexign.cdr.parser;
+package ru.nexign.brt.parser;
 
 import org.springframework.stereotype.Component;
 import ru.nexign.jpa.model.CallDataRecord;

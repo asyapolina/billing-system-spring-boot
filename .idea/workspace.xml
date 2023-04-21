@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: Spring Security with JWT token implementation">
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/exception/UserHasNoAccessException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/request/UsernameRequest.java" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="feat: secure data for abonents">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/crud/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/crud/CrudMessageConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/ReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/advice/ManagerControllerAdvice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA-entities/src/main/java/ru/nexign/jpa/dao/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/authorization/ClientAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/authorization/ClientAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/messaging/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/parser/CdrParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/parser/CdrParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdr/cdr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cdr/cdr.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +184,7 @@
       <workItem from="1681454021229" duration="24000" />
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
-      <workItem from="1681717957873" duration="108899000" />
+      <workItem from="1681717957873" duration="111807000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -395,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682081051140</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="feat: secure data for abonents">
+      <created>1682082671806</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1682082671806</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +414,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: entity dto" />
     <MESSAGE value="add: requests and responses" />
     <MESSAGE value="feat: abonent rest controller" />
     <MESSAGE value="fix: config fixes" />
@@ -438,7 +438,8 @@
     <MESSAGE value="add: get client report endpoint" />
     <MESSAGE value="feat: Spring Cache in services" />
     <MESSAGE value="feat: Spring Security with JWT token implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Spring Security with JWT token implementation" />
+    <MESSAGE value="feat: secure data for abonents" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: secure data for abonents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,14 +20,14 @@ public class CallTimeGenerator {
 
         // Проверка на валидность месяца и года
         if (month < 1 || month > 12 || year > currentYear || (year == currentYear && month > currentMonthValue)) {
-            throw new IllegalArgumentException("Неверные значения месяца и года");
+            throw new IllegalArgumentException("Incorrect month and year values.");
         }
 
         // Проверка на високосный год
         Month targetMonth = Month.of(month);
         int daysInMonth = targetMonth.maxLength();
-        if (targetMonth == Month.FEBRUARY && LocalDate.of(year, month, 1).isLeapYear()) {
-            daysInMonth = 29;
+        if (targetMonth == Month.FEBRUARY && !LocalDate.of(year, month, 1).isLeapYear()) {
+            daysInMonth = 28;
         }
 
         Random random = new Random();

@@ -1,4 +1,4 @@
-package ru.nexign.brt.authorization;
+package ru.nexign.brt.service.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
