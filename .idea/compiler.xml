@@ -2,7 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -14,14 +13,6 @@
         <module name="BRT-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="BillingSystem" target="1.8" />
-      <module name="BRT-service" target="17" />
-      <module name="CDR-service" target="17" />
-      <module name="CRM-service" target="17" />
-      <module name="HRS-service" target="17" />
-      <module name="JPA-entities" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
