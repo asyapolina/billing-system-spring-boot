@@ -3,7 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/BRT-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CDR-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CDR-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CRM-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HRS-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/JPA-entities/src/main/java" charset="UTF-8" />
