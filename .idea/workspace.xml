@@ -4,27 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="refactor: data generation">
-      <change afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/aspect/MessagingAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/aspect/ControllerAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/aspect/MessagingAspect.java" afterDir="false" />
+    <list default="true" id="0ac2d43a-8f04-45c8-90e8-6ae6242c128b" name="Changes" comment="refactor: add aspects for logging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/crud/CrudMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/crud/CrudMessageConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/messaging/tariffication/TarifficationMessageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/parser/CdrParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/parser/CdrParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/authorization/ClientAuthorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/authorization/ClientAuthorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/BillingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/BillingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BRT-service/src/main/java/ru/nexign/brt/service/tariffication/TarifficationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/CdrServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/CdrServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/PhoneNumberGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/PhoneNumberGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CallTimeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CdrGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/generator/cdr/CdrGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/CdrService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/ClientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CDR-service/src/main/java/ru/nexign/cdr/service/ClientsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/ManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/messaging/MessageProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/service/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/messaging/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/security/config/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/aspect/MessagingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/aspect/MessagingAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdr/cdr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cdr/cdr.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +192,7 @@
       <workItem from="1681454059567" duration="3005000" />
       <workItem from="1681457079877" duration="64559000" />
       <workItem from="1681717957873" duration="112520000" />
-      <workItem from="1682255049695" duration="9733000" />
+      <workItem from="1682255049695" duration="11932000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681456639516</created>
@@ -423,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682265177617</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="refactor: add aspects for logging">
+      <created>1682267712126</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1682267712126</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: config fixes" />
     <MESSAGE value="add: property files" />
     <MESSAGE value="feat: create new abonent functionality" />
     <MESSAGE value="refactor: field types changing" />
@@ -466,50 +467,26 @@
     <MESSAGE value="feat: secure data for abonents" />
     <MESSAGE value="refactor: cdr file parser" />
     <MESSAGE value="refactor: data generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: data generation" />
+    <MESSAGE value="refactor: add aspects for logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: add aspects for logging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java</url>
-          <line>15</line>
+          <line>14</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/MinuteTariffService.java</url>
-          <line>14</line>
+          <line>13</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/CRM-service/src/main/java/ru/nexign/crm/controller/AbonentController.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java</url>
           <line>60</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/report/ReportGeneratorService.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/HRS-service/src/main/java/ru/nexign/hrs/service/tariffication/TarifficationService.java</url>

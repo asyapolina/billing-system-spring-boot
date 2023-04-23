@@ -22,8 +22,8 @@ public class BillingService {
         this.reportService = reportService;
     }
 
-
-   public TarifficationResponseBody makeMonthCharge(List<ClientReport> reports) {
+    // Обновление балланса абонентов после тарификации
+    public TarifficationResponseBody makeMonthCharge(List<ClientReport> reports) {
         TarifficationResponseBody response = new TarifficationResponseBody(new ArrayList<>());
 
         for (var report: reports) {
@@ -33,7 +33,7 @@ public class BillingService {
             response.getNumbers().add(new PhoneNumberBalance(client.getPhoneNumber(), client.getBalance()));
         }
         return response;
-   }
+    }
 
 
 

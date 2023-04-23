@@ -23,6 +23,7 @@ public class ClientAuthorization {
         this.tariffService = tariffService;
     }
 
+    // Возвращает только те записи в cdr, в которых номер телефона - абонент нашего оператора
     public List<CallDataRecord> authorizeClientsFromCdr(List<CallDataRecord> cdrList) {
         List<CallDataRecord> filteredCdrList = new ArrayList<>();
 

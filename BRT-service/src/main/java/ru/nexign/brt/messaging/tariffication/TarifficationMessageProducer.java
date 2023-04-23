@@ -27,12 +27,14 @@ public class TarifficationMessageProducer {
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
+    // Общение с сервисом CDR
     @SneakyThrows
     public Response send(CdrPeriod body) {
         var request = new Request(mapper.writeValueAsString(body));
         return jmsTemplate.convertSendAndReceive(cdrMq, request, Response.class);
     }
 
+    // Общение с сервисом HRS
     @SneakyThrows
     public Response send(CdrList body) {
         var request = new Request(mapper.writeValueAsString(body));

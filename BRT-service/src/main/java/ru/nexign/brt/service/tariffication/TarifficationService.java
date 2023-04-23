@@ -52,6 +52,7 @@ public class TarifficationService {
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
+    // Запускается тарификация, если в базе данных пусто
     @PostConstruct
     public void firstTarifficationCall() {
         if (callRepository.findAll().isEmpty()) {
@@ -89,6 +90,7 @@ public class TarifficationService {
         }
     }
 
+    // Получение звонков абонентов оператора
     private List<CallDataRecord> getCdrList() {
         try {
             return parser.parse(filepath);
@@ -97,6 +99,7 @@ public class TarifficationService {
         }
     }
 
+    // Получение отчетов для абонентов оператора
     private ReportList getReportList(List<CallDataRecord> authorizedClients) {
         var authorized = new CdrList(authorizedClients);
         var reportResponse = producer.send(authorized);

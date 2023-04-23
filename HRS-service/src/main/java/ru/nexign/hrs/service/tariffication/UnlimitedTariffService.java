@@ -9,7 +9,7 @@ import java.time.Duration;
 @Service("Unlimited300")
 public class UnlimitedTariffService implements TarifficationService {
 
-    // Метод расчета стоимости звонка в зависимости от выбранного тарифа
+    // Метод расчета стоимости звонка для тарифа Безлимит 300
     @Override
     public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, String callType) {
         long durationInMinutes = (long) Math.ceil(callDuration.getSeconds() / 60.0);

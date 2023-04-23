@@ -22,7 +22,7 @@ public class CallTimeGenerator {
             throw new IllegalArgumentException("Incorrect month and year values.");
         }
 
-        // Проверка на високосный год
+        // Проверка на високосный год для февраля, если не високосный, то будет 28 дней в месяце, иначе 29
         Month targetMonth = Month.of(month);
         int daysInMonth = targetMonth.maxLength();
         if (targetMonth == Month.FEBRUARY && !LocalDate.of(year, month, 1).isLeapYear()) {

@@ -23,6 +23,7 @@ public interface TarifficationService {
         Duration callDuration = Duration.between(cdr.getStartTime(), cdr.getEndTime());
         String duration = calculateCallDurationToString(callDuration);
 
+        // подсчет уже использованных минут из прошлых звонков (если такие есть)
         long totalSpentMinutes = 0;
         if (report.getPrice() != null || !report.getPrice().equals(BigDecimal.ZERO)) {
             totalSpentMinutes = calculateTotalCallDuration(report.getCalls());
@@ -34,6 +35,7 @@ public interface TarifficationService {
         CallDto callDto = new CallDto(cdr.getCallType(), cdr.getStartTime(), cdr.getEndTime(), duration, callCost);
         report.getCalls().add(callDto);
 
+        // Добавление стоимости звонка в общую стоимость за период
         if (report.getPrice() == null || Objects.equals(report.getPrice(), BigDecimal.ZERO)) {
             report.setPrice(callDto.getCost());
         } else {
@@ -48,10 +50,10 @@ public interface TarifficationService {
 
         for (CallDto call : calls) {
             String durationString = call.getDuration(); // Получаем строку времени в формате "HH:MM:SS"
-            String[] parts = durationString.split(":"); // Разделяем строку на части по разделителю ":"
-            int hours = Integer.parseInt(parts[0]); // Парсим часы
-            int minutes = Integer.parseInt(parts[1]); // Парсим минуты
-            int seconds = Integer.parseInt(parts[2]); // Парсим секунды
+            String[] parts = durationString.split(":"); //
+            int hours = Integer.parseInt(parts[0]);
+            int minutes = Integer.parseInt(parts[1]);
+            int seconds = Integer.parseInt(parts[2]);
 
             long totalSeconds = hours * 3600 + minutes * 60 + seconds;
             long totalMinutes = (long) Math.ceil(totalSeconds / 60.0); // Округляем в большую сторону до минут

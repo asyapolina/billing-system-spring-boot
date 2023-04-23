@@ -25,6 +25,7 @@ public class TarifficationMessageConsumer {
 
     @JmsListener(destination = "${tariffication.mq}")
     public Response receiveTarifficationRequest(@Payload Request request) {
+        // Ищет в таблице последнюю запись по времени окончания звонка и берет следующий месяц и год для тарификации
         var month = callService.getLastCallMonth();
         var year = callService.getLastCallYear();
 

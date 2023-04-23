@@ -12,6 +12,7 @@ import java.util.List;
 @Component
 public class CdrParser {
 
+    // Чтение файла cdr в массив обьектов
     public List<CallDataRecord> parse(String filePath) throws IOException {
         List<CallDataRecord> cdrList = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");

@@ -26,7 +26,7 @@ public class CdrGenerator {
     public void generateCdrFile(int month, int year) throws IOException {
         List<String> cdrList = new ArrayList<>();
         Random random = new Random();
-        List<String> uniqueNumbers = new ArrayList<>();
+        List<String> uniqueNumbers = new ArrayList<>(); // Для хранения уже добавленных уникальных номеров
 
 
         for (int i = 0; i < amount; i++) {
@@ -36,7 +36,7 @@ public class CdrGenerator {
 
             // Генерация номера абонента
             String phoneNumber;
-            if (uniqueNumbers.size() < uniqueNumbersAmount) {
+            if (uniqueNumbers.size() < uniqueNumbersAmount) { // уникальные номера ограничены, чтобы генерировалось больше записей для одного номера
                 phoneNumber = PhoneNumberGenerator.generateRussianPhoneNumber();
             }   else {
                 phoneNumber = uniqueNumbers.get(random.nextInt(uniqueNumbers.size()));

@@ -1,5 +1,6 @@
 package ru.nexign.crm.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,7 @@ public class AuthController {
         this.userDetailsService = userDetailsService;
     }
 
+    // Генерирует jwt токен для существующего пользователя
     @RequestMapping(
             method = RequestMethod.POST,
             path = "/login"
@@ -41,7 +43,7 @@ public class AuthController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
         final String token = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok("Your jwt token: " + token);
+        return ResponseEntity.ok("Your jwt token: " + token); // отправка токена пользователю для последующих запросов
     }
 
 }

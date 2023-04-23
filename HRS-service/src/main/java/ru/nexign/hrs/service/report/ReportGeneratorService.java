@@ -24,12 +24,13 @@ public class ReportGeneratorService {
         this.applicationContext = applicationContext;
     }
 
+    // Создание отчетов для всех абонентов у которых были звонки
    public ReportList generateReport(CdrList request) {
        ReportList response = new ReportList(new ArrayList<>());
        Map<String, ClientReport> responseMap = new HashMap<>();
 
        for (CallDataRecord cdr : request.getCdrList()) {
-           var tarifficationService = applicationContext.getBean(cdr.getTariff().getName(), TarifficationService.class);
+           var tarifficationService = applicationContext.getBean(cdr.getTariff().getName(), TarifficationService.class); // получение бина в зависимости от тарифа
 
            String phoneNumber = cdr.getPhoneNumber();
            ClientReport report = responseMap.get(phoneNumber);
@@ -39,7 +40,7 @@ public class ReportGeneratorService {
                responseMap.put(phoneNumber, report);
            }
 
-           ClientReport fullReport = tarifficationService.tarifficate(cdr, report);
+           ClientReport fullReport = tarifficationService.tarifficate(cdr, report); // тарификация по тарифу абонента
            response.getClientReports().add(fullReport);
            responseMap.put(phoneNumber, fullReport);
        }
