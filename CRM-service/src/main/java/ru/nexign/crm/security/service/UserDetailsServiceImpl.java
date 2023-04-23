@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.nexign.crm.security.service.UserService;
 import ru.nexign.jpa.exception.UserNotFoundException;
 
 import java.util.ArrayList;

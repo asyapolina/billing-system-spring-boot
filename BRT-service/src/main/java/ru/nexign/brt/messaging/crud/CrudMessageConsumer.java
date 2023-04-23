@@ -3,7 +3,6 @@ package ru.nexign.brt.messaging.crud;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -19,7 +18,6 @@ import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.Response;
 
 @Service
-@Slf4j
 public class CrudMessageConsumer {
     private final ClientService clientService;
     private final ReportService reportService;
@@ -34,8 +32,6 @@ public class CrudMessageConsumer {
 
     @JmsListener(destination = "${deposit.mq}")
     public Response receiveDepositRequest(@Payload Request request) {
-        log.info("Request received: {}", request.getMessage());
-
         try {
             var response = clientService.depositMoney(mapper.readValue(request.getMessage(), DepositRequestBody.class));
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
@@ -46,8 +42,6 @@ public class CrudMessageConsumer {
 
     @JmsListener(destination = "${tariff.mq}")
     public Response receiveTariffRequest(@Payload Request request) {
-        log.info("Request received: {}", request.getMessage());
-
         try {
             var response = clientService.changeTariff(mapper.readValue(request.getMessage(), TariffRequestBody.class));
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
@@ -58,11 +52,8 @@ public class CrudMessageConsumer {
 
     @JmsListener(destination = "${client.mq}")
     public Response receiveClientDto(@Payload Request request) {
-        log.info("Request received: {}", request.getMessage());
-
         try {
             var response = clientService.createClient(mapper.readValue(request.getMessage(), ClientDto.class));
-
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
         } catch (JsonProcessingException | RuntimeException e) {
             return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);
@@ -71,11 +62,8 @@ public class CrudMessageConsumer {
 
     @JmsListener(destination = "${client.report.mq}")
     public Response receivePhoneNumber(@Payload UsernameRequest request) {
-        log.info("Request received: {}", request.getMessage());
-
         try {
             var response = reportService.getLastReport(request.getMessage(), request.getUsername());
-
             return new Response(mapper.writeValueAsString(response), ResponseStatus.SUCCESS);
         } catch (JsonProcessingException | RuntimeException e) {
             return new Response("Brt service: " + e.getMessage(), ResponseStatus.ERROR);

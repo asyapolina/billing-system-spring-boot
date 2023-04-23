@@ -3,7 +3,6 @@ package ru.nexign.brt.messaging.tariffication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -14,7 +13,6 @@ import ru.nexign.jpa.request.Request;
 import ru.nexign.jpa.response.Response;
 
 @Component
-@Slf4j
 public class TarifficationMessageProducer {
     private final JmsMessagingTemplate jmsTemplate;
     @Value("${cdr.mq}")

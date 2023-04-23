@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @Component
-@Slf4j
 public class CdrGenerator {
     @Value("${const.cdr.amount}")
     private int amount;
@@ -62,9 +61,8 @@ public class CdrGenerator {
                 writer.newLine();
             }
 
-            log.info("Записи CDR сохранены в файл");
         } catch (IOException e) {
-            throw new IOException("Ошибка при сохранении записей CDR в файл: " + e.getMessage());
+            throw new IOException(e.getMessage());
         }
     }
 }

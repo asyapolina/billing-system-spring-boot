@@ -15,7 +15,6 @@ import ru.nexign.jpa.request.Request;
 import ru.nexign.jpa.response.Response;
 
 @Component
-@Slf4j
 public class MessageConsumer {
     private final ReportGeneratorService service;
     private final ObjectMapper mapper;
@@ -28,8 +27,6 @@ public class MessageConsumer {
 
     @JmsListener(destination = "${report.mq}")
     public Response receiveTarifficationRequest(@Payload Request request) {
-        log.info("Request received: {}", request.getMessage());
-
         try {
             var tarifficationRequest = mapper.readValue(request.getMessage(), CdrList.class);
             var response = service.generateReport(tarifficationRequest);

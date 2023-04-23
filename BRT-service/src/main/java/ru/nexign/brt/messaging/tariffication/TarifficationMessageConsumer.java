@@ -1,6 +1,5 @@
 package ru.nexign.brt.messaging.tariffication;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -12,7 +11,7 @@ import ru.nexign.jpa.request.Request;
 import ru.nexign.jpa.response.Response;
 
 
-@Service@Slf4j
+@Service
 public class TarifficationMessageConsumer {
 
     private final CallService callService;
@@ -26,11 +25,8 @@ public class TarifficationMessageConsumer {
 
     @JmsListener(destination = "${tariffication.mq}")
     public Response receiveTarifficationRequest(@Payload Request request) {
-        log.info("Request received: {}", request.getMessage());
-
         var month = callService.getLastCallMonth();
         var year = callService.getLastCallYear();
-        log.info("run tariffication");
 
         return tarifficationService.runTariffication(new CdrPeriod(month, year));
     }

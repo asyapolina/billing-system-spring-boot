@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@Slf4j
 public class ReportGeneratorService {
     private final ApplicationContext applicationContext;
 
@@ -31,9 +30,6 @@ public class ReportGeneratorService {
 
        for (CallDataRecord cdr : request.getCdrList()) {
            var tarifficationService = applicationContext.getBean(cdr.getTariff().getName(), TarifficationService.class);
-           if (tarifficationService == null) {
-               // exception
-           }
 
            String phoneNumber = cdr.getPhoneNumber();
            ClientReport report = responseMap.get(phoneNumber);

@@ -3,15 +3,14 @@ package ru.nexign.brt.service.tariffication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.nexign.brt.dao.CallRepository;
 import ru.nexign.brt.messaging.tariffication.TarifficationMessageProducer;
 import ru.nexign.brt.parser.CdrParser;
 import ru.nexign.brt.service.authorization.ClientAuthorization;
-import ru.nexign.jpa.entity.ClientEntity;
 import ru.nexign.jpa.enums.ResponseStatus;
 import ru.nexign.jpa.model.CallDataRecord;
 import ru.nexign.jpa.model.CdrPeriod;
@@ -35,21 +34,34 @@ public class TarifficationService {
     private final TarifficationMessageProducer producer;
     private final BillingService billingService;
     private final ClientAuthorization clientAuthorization;
+    private final CallRepository callRepository;
     private final CdrParser parser;
     private final ObjectMapper mapper;
 
     @Autowired
-    public TarifficationService(TarifficationMessageProducer producer, BillingService billingService, ClientAuthorization clientAuthorization, CdrParser parser) {
+    public TarifficationService(TarifficationMessageProducer producer,
+                                BillingService billingService,
+                                ClientAuthorization clientAuthorization,
+                                CallRepository callRepository,
+                                CdrParser parser) {
         this.producer = producer;
         this.billingService = billingService;
         this.clientAuthorization = clientAuthorization;
+        this.callRepository = callRepository;
         this.parser = parser;
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @PostConstruct
     public void firstTarifficationCall() {
-        runTariffication(new CdrPeriod(firstMonth, firstYear));
+        if (callRepository.findAll().isEmpty()) {
+            var response = runTariffication(new CdrPeriod(firstMonth, firstYear));
+            if (response.getStatus().equals(ResponseStatus.ERROR)) {
+                log.error("Unsuccesfull first tariffication. Error message: {}", response.getMessage());
+            } else {
+                log.info("Succesfull first tariffication.");
+            }
+        }
     }
 
     public Response runTariffication(CdrPeriod cdrPeriod) {

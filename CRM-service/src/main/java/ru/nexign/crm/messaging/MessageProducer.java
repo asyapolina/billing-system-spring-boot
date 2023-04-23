@@ -16,7 +16,6 @@ import ru.nexign.jpa.request.body.TariffRequestBody;
 import ru.nexign.jpa.response.Response;
 
 @Component
-@Slf4j
 public class MessageProducer {
     private final JmsMessagingTemplate jmsTemplate;
     @Value("${deposit.mq}")

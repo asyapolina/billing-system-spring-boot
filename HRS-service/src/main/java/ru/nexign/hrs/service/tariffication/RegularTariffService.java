@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.time.Duration;
 
 @Service("Regular")
-@Slf4j
 public class RegularTariffService implements TarifficationService {
     @Override
     public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, String callType) {

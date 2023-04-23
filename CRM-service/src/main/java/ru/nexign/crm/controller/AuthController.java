@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import ru.nexign.jpa.request.body.AuthRequest;
 import ru.nexign.crm.security.config.JwtUtils;
 import ru.nexign.crm.security.service.UserDetailsServiceImpl;
@@ -24,7 +25,10 @@ public class AuthController {
         this.userDetailsService = userDetailsService;
     }
 
-    @PostMapping("/login")
+    @RequestMapping(
+            method = RequestMethod.POST,
+            path = "/login"
+    )
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));

@@ -18,7 +18,6 @@ import ru.nexign.jpa.response.body.TarifficationResponseBody;
 
 @RestController
 @RequestMapping(path = "/manager")
-@Slf4j
 public class ManagerController {
     private final MessageProducer sender;
     private final ObjectMapper mapper;
@@ -29,7 +28,10 @@ public class ManagerController {
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
-    @PatchMapping(path = "/changeTariff")
+    @RequestMapping(
+            method = RequestMethod.PATCH,
+            path = "/changeTariff"
+    )
     public ResponseEntity<?> changeTariff(@RequestBody TariffRequestBody request) {
         var response = sender.send(request);
         ObjectMapper mapper = new ObjectMapper();
@@ -45,7 +47,10 @@ public class ManagerController {
         }
     }
 
-    @PostMapping(path = "/abonent")
+    @RequestMapping(
+            method = RequestMethod.POST,
+            path = "/abonent"
+    )
     public ResponseEntity<?> createClient(@RequestBody ClientDto request) {
         var response = sender.send(request);
         ObjectMapper mapper = new ObjectMapper();
@@ -61,7 +66,10 @@ public class ManagerController {
         }
     }
 
-    @PatchMapping(path = "/billing")
+    @RequestMapping(
+            method = RequestMethod.PATCH,
+            path = "/billing"
+    )
     public ResponseEntity<?> startTariffication(@RequestBody String request) {
         var response = sender.send(request);
         ObjectMapper mapper = new ObjectMapper();

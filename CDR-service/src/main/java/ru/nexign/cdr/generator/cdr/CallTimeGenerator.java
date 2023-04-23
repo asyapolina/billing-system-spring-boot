@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 @Component
-@Slf4j
 public class CallTimeGenerator {
     public static String generateCallTime(int month, int year) {
         LocalDate currentDate = LocalDate.now();

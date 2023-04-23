@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 import java.time.Duration;
 
 @Service("Perminute")
-@Slf4j
 public class MinuteTariffService implements TarifficationService {
     @Override
     public BigDecimal calculateCallCost(TariffEntity tariff, Duration callDuration, long totalSpentMinutes, String callType) {

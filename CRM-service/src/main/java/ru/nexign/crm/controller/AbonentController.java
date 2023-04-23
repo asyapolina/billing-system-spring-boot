@@ -18,7 +18,6 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(path = "/abonent")
-@Slf4j
 public class AbonentController {
     private final MessageProducer sender;
     private final ObjectMapper mapper;
@@ -47,7 +46,10 @@ public class AbonentController {
         }
     }
 
-    @GetMapping(path = "/report/{phoneNumber}")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            path = "/report/{phoneNumber}"
+    )
     public ResponseEntity<?> getLastReport(@PathVariable String phoneNumber, Principal principal) {
         var response = sender.send(phoneNumber, principal.getName());
 

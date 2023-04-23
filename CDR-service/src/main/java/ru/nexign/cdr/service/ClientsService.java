@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nexign.cdr.generator.client.ClientGenerator;
 import ru.nexign.jpa.dao.ClientsRepository;
-import ru.nexign.jpa.entity.ClientEntity;
-
-import java.util.ArrayList;
 
 @Service
 public class ClientsService {
