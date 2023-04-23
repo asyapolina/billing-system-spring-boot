@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CDR-service" />
-        <module name="JPA-entities" />
         <module name="HRS-service" />
+        <module name="JPA-entities" />
         <module name="CRM-service" />
         <module name="BRT-service" />
       </profile>
