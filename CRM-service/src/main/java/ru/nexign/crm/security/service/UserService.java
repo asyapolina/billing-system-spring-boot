@@ -3,6 +3,7 @@ package ru.nexign.crm.security.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.nexign.jpa.dao.ClientsRepository;
 import ru.nexign.jpa.dao.UserRepository;
 import ru.nexign.jpa.dto.Mapper;
 import ru.nexign.jpa.user.UserDto;
@@ -14,12 +15,14 @@ import javax.annotation.PostConstruct;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final ClientsRepository clientsRepository;
     private final Mapper mapper;
     private final PasswordEncoder encoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, Mapper mapper, PasswordEncoder encoder) {
+    public UserService(UserRepository userRepository, ClientsRepository clientsRepository, Mapper mapper, PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.clientsRepository = clientsRepository;
         this.mapper = mapper;
         this.encoder = encoder;
     }
@@ -36,8 +39,9 @@ public class UserService {
 
         var abonent = findByUsername("abonent");
         if (abonent == null) {
+            var phoneNumber = clientsRepository.findAll().get(0).getPhoneNumber();
             userRepository.save(new UserEntity("abonent",
-                    "79001221424",
+                    phoneNumber,
                     encoder.encode("abcde"),
                     UserRole.ROLE_ABONENT.toString()));
         }
