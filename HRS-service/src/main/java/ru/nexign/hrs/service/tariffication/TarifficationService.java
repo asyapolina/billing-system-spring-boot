@@ -24,7 +24,7 @@ public interface TarifficationService {
         String duration = calculateCallDurationToString(callDuration);
 
         long totalSpentMinutes = 0;
-        if (report.getPrice() == null || report.getPrice().equals(BigDecimal.ZERO)) {
+        if (report.getPrice() != null || !report.getPrice().equals(BigDecimal.ZERO)) {
             totalSpentMinutes = calculateTotalCallDuration(report.getCalls());
         }
 

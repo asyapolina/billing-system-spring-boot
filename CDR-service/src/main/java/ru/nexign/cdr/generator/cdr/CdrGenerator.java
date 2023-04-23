@@ -11,15 +11,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Component
 @Slf4j
 public class CdrGenerator {
     @Value("${const.cdr.amount}")
     private int amount;
+    @Value("${const.unique.phone.numbers}")
+    private int uniqueNumbersAmount;
 
     @Value("${const.filepath}")
     private String filePath;
@@ -27,19 +27,31 @@ public class CdrGenerator {
     public void generateCdrFile(int month, int year) throws IOException {
         List<String> cdrList = new ArrayList<>();
         Random random = new Random();
+        List<String> uniqueNumbers = new ArrayList<>();
+
 
         for (int i = 0; i < amount; i++) {
+
             // Генерация типа вызова (01 - исходящий, 02 - входящий)
             String callType = random.nextInt(2) == 0 ? "01" : "02";
 
             // Генерация номера абонента
-            String phoneNumber = PhoneNumberGenerator.generateRussianPhoneNumber();
+            String phoneNumber;
+            if (uniqueNumbers.size() < uniqueNumbersAmount) {
+                phoneNumber = PhoneNumberGenerator.generateRussianPhoneNumber();
+            }   else {
+                phoneNumber = uniqueNumbers.get(random.nextInt(uniqueNumbers.size()));
+            }
 
             // Генерация времени начала и конца звонка
             String callTime = CallTimeGenerator.generateCallTime(month, year);
 
             String cdr = callType + "," + phoneNumber + "," + callTime;
             cdrList.add(cdr);
+
+            if (!uniqueNumbers.contains(phoneNumber)) {
+                uniqueNumbers.add(phoneNumber);
+            }
         }
 
         String[] fields = filePath.split("/");

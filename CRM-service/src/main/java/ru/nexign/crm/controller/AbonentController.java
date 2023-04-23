@@ -29,7 +29,10 @@ public class AbonentController {
         this.mapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
-    @PatchMapping(path = "/pay")
+    @RequestMapping(
+            method = RequestMethod.PATCH,
+            path = "/pay"
+    )
     public ResponseEntity<?> depositMoney(@RequestBody DepositRequestBody request) {
         var response = sender.send(request);
 

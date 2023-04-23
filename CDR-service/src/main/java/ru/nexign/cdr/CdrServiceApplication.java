@@ -13,13 +13,12 @@ import java.io.IOException;
 @EnableJpaRepositories
 public class CdrServiceApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         ApplicationContext context = SpringApplication.run(CdrServiceApplication.class, args);
 
-        final CdrService cdr = context.getBean(CdrService.class);
-//        final ClientsService controller = context.getBean(ClientsService.class);
-//		controller.generateClients();
+        final ClientsService controller = context.getBean(ClientsService.class);
+		controller.saveClients();
     }
 
 }

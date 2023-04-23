@@ -10,7 +10,6 @@ import ru.nexign.jpa.user.UserEntity;
 import ru.nexign.jpa.user.UserRole;
 
 import javax.annotation.PostConstruct;
-import java.util.Optional;
 
 @Service
 public class UserService {

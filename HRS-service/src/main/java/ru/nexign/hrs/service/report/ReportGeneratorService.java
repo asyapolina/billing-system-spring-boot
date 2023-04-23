@@ -45,6 +45,7 @@ public class ReportGeneratorService {
 
            ClientReport fullReport = tarifficationService.tarifficate(cdr, report);
            response.getClientReports().add(fullReport);
+           responseMap.put(phoneNumber, fullReport);
        }
 
        return response;
