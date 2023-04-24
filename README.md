@@ -34,3 +34,5 @@
 Запуск сервисов:    
     
     CRM -> CDR -> HRS -> BRT
+
+Для работы Active MQ необходимо запустить [docker-compose](docker-compose.yml)
