@@ -18,7 +18,9 @@ public class CallTimeGenerator {
         int currentMonthValue = currentDate.getMonthValue();
 
         // Проверка на валидность месяца и года
-        if (month < 1 || month > 12 || year > currentYear || (year == currentYear && month > currentMonthValue)) {
+        int yearLowBoundary = 2000;  // произвольная разумная нижняя граница для года
+        if (month < 1 || month > 12 || year > currentYear
+                || (year == currentYear && month > currentMonthValue) || year < yearLowBoundary) {
             throw new IllegalArgumentException("Incorrect month and year values.");
         }
 
