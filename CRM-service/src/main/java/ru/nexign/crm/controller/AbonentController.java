@@ -3,7 +3,6 @@ package ru.nexign.crm.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,6 @@ import ru.nexign.jpa.enums.ResponseStatus;
 import ru.nexign.jpa.request.body.DepositRequestBody;
 import ru.nexign.jpa.response.body.DepositResponseBody;
 import ru.nexign.jpa.response.body.ReportResponseBody;
-import ru.nexign.jpa.response.body.TarifficationResponseBody;
 
 import java.security.Principal;
 

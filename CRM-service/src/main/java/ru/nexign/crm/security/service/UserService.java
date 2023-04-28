@@ -1,5 +1,6 @@
 package ru.nexign.crm.security.service;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import ru.nexign.jpa.user.UserDto;
 import ru.nexign.jpa.user.UserEntity;
 import ru.nexign.jpa.user.UserRole;
 
-import javax.annotation.PostConstruct;
 
 @Service
 public class UserService {

@@ -13,14 +13,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component
 public class ClientGenerator {
     @Value("${const.clients.amount}")
     private int amount;
     private final TariffsRepository tariffRepo;
     private final BalanceGenerator balanceGenerator;
 
-    @Autowired
     public ClientGenerator(TariffsRepository tariffRepo, BalanceGenerator balanceGenerator) {
         this.tariffRepo = tariffRepo;
         this.balanceGenerator = balanceGenerator;
