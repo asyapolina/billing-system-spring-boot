@@ -13,7 +13,7 @@ public class BalanceGenerator {
     @Value("${const.balance.upper}")
     private int upper;
 
-    public double generateBalance() {
+    public long generateBalance() {
         Random random = new Random();
         return random.nextInt(lower, upper);
     }
