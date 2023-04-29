@@ -52,9 +52,12 @@ public class CdrGenerator {
                 uniqueNumbers.add(phoneNumber);
             }
         }
+        filePath.replace("\\", "/");
+        Path path = Paths.get(filePath);
+        if (path.getParent() != null && !path.getParent().toFile().exists()) {
+            path.getParent().toFile().mkdirs();
+        }
 
-        String[] fields = filePath.split("/");
-        Path path = Paths.get(fields[0], fields[1]);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
             for (String cdr : cdrList) {
                 writer.write(cdr);

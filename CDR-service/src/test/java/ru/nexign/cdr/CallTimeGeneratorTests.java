@@ -1,6 +1,7 @@
 package ru.nexign.cdr;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.nexign.cdr.generator.cdr.CallTimeGenerator;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CallTimeGeneratorTests {
     @ParameterizedTest
+    @Order(1)
     @DisplayName("Call time generator tests on valid values")
     @CsvSource({"1,2001", "10,2010", "5,2015", "1,2023", "2,2023", "3,2023", "4,2023"})
     void testCTGDontThrowOnValidValues(int month, int year) {
@@ -19,6 +21,7 @@ public class CallTimeGeneratorTests {
     }
 
     @ParameterizedTest
+    @Order(2)
     @DisplayName("Call time generator test for throwing on invalid values")
     @CsvSource({"1,1999", "-1,2001", "10,2045", "5,-1", "13,2021", "0,2011", "0,0", "12,2024"})
     void testCTGThrowsOnInvalidValues(int month, int year) {
@@ -27,6 +30,7 @@ public class CallTimeGeneratorTests {
     }
 
     @ParameterizedTest
+    @Order(3)
     @DisplayName("Call time generator check for correct return format")
     @CsvSource({"1,2001", "10,2010", "5,2015", "1,2023", "2,2023", "3,2023", "4,2023"})
     void testCTGFormat(int month, int year) {
