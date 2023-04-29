@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PhoneNumberGeneratorTests {
     @Test
     @DisplayName("Ensure that PhoneNumberGenerator return valid values")
-    void tesReturnValifNumbers() {
+    void tesReturnValidNumbers() {
         Pattern pattern = Pattern.compile("\\+?[1-9][0-9]{10}");
         for (int i = 0; i < 10; ++i) {
             assertTrue(pattern.matcher(PhoneNumberGenerator.generateRussianPhoneNumber()).find());

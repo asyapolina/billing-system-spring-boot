@@ -36,3 +36,6 @@
     CRM -> CDR -> HRS -> BRT
 
 Для работы Active MQ необходимо запустить [docker-compose](docker-compose.yml)
+
+### Тесты
+[CDR Generator tests](CDR-service/README.md)
