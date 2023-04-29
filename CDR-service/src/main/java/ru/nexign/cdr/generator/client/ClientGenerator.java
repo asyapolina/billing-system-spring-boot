@@ -15,8 +15,8 @@ import java.util.Set;
 
 @Component
 public class ClientGenerator {
-    @Value("${const.clients.amount}")
-    private int amount;
+    @Value("${const.clients.count}")
+    private int count;
     private final TariffsRepository tariffRepo;
     private final BalanceGenerator balanceGenerator;
 
@@ -31,7 +31,7 @@ public class ClientGenerator {
         List<ClientEntity> clients = new ArrayList<>();
 
         // Генерация данных для таблицы clients
-        for (int i = 1; i <= amount; i++) {
+        for (int i = 1; i <= count; i++) {
             String phoneNumber;
             do {
                 phoneNumber = PhoneNumberGenerator.generateRussianPhoneNumber();

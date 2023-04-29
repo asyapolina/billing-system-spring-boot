@@ -3,23 +3,21 @@ package ru.nexign.cdr;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
+import ru.nexign.cdr.generator.cdr.CdrGenerator;
 import ru.nexign.cdr.generator.client.BalanceGenerator;
-
-import java.util.HashSet;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-public class BalanceGeneratorTests {
+public class CdrGeneratorTests {
     @Test
     @DisplayName("Ensure that class can be default constructed")
     void testCanConstruct() {
-        assertDoesNotThrow(() -> new BalanceGenerator());
+        assertDoesNotThrow(() -> new CdrGenerator());
     }
 
-    static BalanceGenerator getInitializedBalanceGenerator(int lower, int upper) {
-        BalanceGenerator b = new BalanceGenerator();
-        ReflectionTestUtils.setField(b, "lower", lower);
-        ReflectionTestUtils.setField(b, "upper", upper);
+    static CdrGenerator getInitializedCdrGenerator(int amount, int  uniqueNumbersAmount, String filePath) {
+        CdrGenerator cdr = new CdrGenerator();
+        ReflectionTestUtils.setField(cdr, "amount", amount);
+        ReflectionTestUtils.setField(cdr, "uniqueNumbersAmount", uniqueNumbersAmount);
+        ReflectionTestUtils.setField(cdr, "filePath", filePath);
         return b;
     }
 
@@ -56,4 +54,5 @@ public class BalanceGeneratorTests {
         // expected that at least 2 different values will be generated
         assertNotEquals(1, values.size());
     }
+
 }
