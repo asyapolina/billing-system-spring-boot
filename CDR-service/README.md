@@ -6,7 +6,7 @@
 
 Количество генерируемых данных указано в application.properties.
 
-### Generator Tests
+### CDR Generator Tests
 
 Сервис сопровожден юнит-тестами следующих классов:
 
