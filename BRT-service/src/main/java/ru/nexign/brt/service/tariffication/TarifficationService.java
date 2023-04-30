@@ -3,6 +3,7 @@ package ru.nexign.brt.service.tariffication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,6 @@ import ru.nexign.jpa.model.CdrList;
 import ru.nexign.jpa.model.ReportList;
 import ru.nexign.jpa.response.Response;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 

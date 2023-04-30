@@ -1,10 +1,9 @@
 package ru.nexign.jpa.user;
 
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import ru.nexign.jpa.entity.ClientEntity;
-
 import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name="users")
 @Entity

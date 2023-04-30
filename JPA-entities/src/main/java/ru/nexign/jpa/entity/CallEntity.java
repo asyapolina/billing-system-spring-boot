@@ -1,11 +1,10 @@
 package ru.nexign.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
