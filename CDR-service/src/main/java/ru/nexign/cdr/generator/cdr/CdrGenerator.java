@@ -15,10 +15,10 @@ import java.util.*;
 
 @Component
 public class CdrGenerator {
-    @Value("${const.cdr.amount}")
-    private int amount;
+    @Value("${const.cdr.count}")
+    private int count;
     @Value("${const.unique.phone.numbers}")
-    private int uniqueNumbersAmount;
+    private int uniqueNumbersCount;
 
     @Value("${const.filepath}")
     private String filePath;
@@ -29,14 +29,14 @@ public class CdrGenerator {
         List<String> uniqueNumbers = new ArrayList<>(); // Для хранения уже добавленных уникальных номеров
 
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < count; i++) {
 
             // Генерация типа вызова (01 - исходящий, 02 - входящий)
             String callType = random.nextInt(2) == 0 ? "01" : "02";
 
             // Генерация номера абонента
             String phoneNumber;
-            if (uniqueNumbers.size() < uniqueNumbersAmount) { // уникальные номера ограничены, чтобы генерировалось больше записей для одного номера
+            if (uniqueNumbers.size() < uniqueNumbersCount) { // уникальные номера ограничены, чтобы генерировалось больше записей для одного номера
                 phoneNumber = PhoneNumberGenerator.generateRussianPhoneNumber();
             }   else {
                 phoneNumber = uniqueNumbers.get(random.nextInt(uniqueNumbers.size()));
@@ -52,9 +52,12 @@ public class CdrGenerator {
                 uniqueNumbers.add(phoneNumber);
             }
         }
+        filePath.replace("\\", "/");
+        Path path = Paths.get(filePath);
+        if (path.getParent() != null && !path.getParent().toFile().exists()) {
+            path.getParent().toFile().mkdirs();
+        }
 
-        String[] fields = filePath.split("/");
-        Path path = Paths.get(fields[0], fields[1]);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
             for (String cdr : cdrList) {
                 writer.write(cdr);
